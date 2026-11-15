@@ -136,14 +136,18 @@ export default function Login() {
     }
   }
 
-  const handleGoogleLogin = () => {
-    window.location.href = 'http://localhost:8000/auth/google/login'
-  }
+const handleGoogleLogin = () => {
+  // Use the Vite env variable, but remove the "/api" part for OAuth routes
+  const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:8000/api'
+  const backendUrl = apiUrl.replace('/api', '')
+  window.location.href = `${backendUrl}/auth/google/login`
+}
 
-  const handleGitHubLogin = () => {
-    window.location.href = 'http://localhost:8000/auth/github/login'
-  }
-
+const handleGitHubLogin = () => {
+  const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:8000/api'
+  const backendUrl = apiUrl.replace('/api', '')
+  window.location.href = `${backendUrl}/auth/github/login`
+}
   const handleViewCatalogNotice = () => {
     setInfoNotice('Please sign in to access the course catalog and plan your schedule.')
     const el = document.getElementById('identifier')
