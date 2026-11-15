@@ -53,6 +53,10 @@ class Settings(BaseSettings):
     RESEND_API_KEY: str = ""
     MAIL_FROM: str = "Westbridge CCRS <onboarding@resend.dev>"
 
+        # Add these inside your Settings class
+    SENDGRID_API_KEY: str = os.getenv("SENDGRID_API_KEY", "")
+    SENDGRID_SENDER_EMAIL: str = os.getenv("SENDGRID_SENDER_EMAIL", "your_verified_email@gmail.com")
+    
     @property
     def cors_origins_list(self) -> List[str]:
         return [origin.strip() for origin in self.CORS_ORIGINS.split(",") if origin.strip()]
