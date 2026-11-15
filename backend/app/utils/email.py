@@ -63,7 +63,7 @@ def _otp_html(greeting: str, heading: str, code: str, note: str) -> str:
 
 
 async def send_otp_email(to_email: str, otp_code: str, recipient_name: Optional[str] = None) -> bool:
-    """Password reset code. Returns True if the email was accepted by Resend."""
+    """Password reset code. Returns True if Resend accepted the email."""
     greeting = recipient_name or "Student"
     subject = "Westbridge University CCRS: Password Reset Verification Code"
     text_body = (
