@@ -8,32 +8,37 @@ from backend.app.config import settings
 
 logger = logging.getLogger("ccrs.email")
 
-RESEND_URL = "https://api.resend.com/emails"
+SENDGRID_URL = "https://api.sendgrid.com/v3/mail/send"
 
 
-def _send_via_resend_sync(to_email: str, subject: str, text_body: str, html_body: str) -> Tuple[bool, str]:
-    """Send one email through Resend's HTTPS API. Returns (success, message).
-    Never logs the message body, so codes never reach the logs."""
-    if not settings.RESEND_API_KEY:
-        msg = "Email service is not configured (RESEND_API_KEY missing)."
+def _send_via_sendgrid_sync(to_email: str, subject: str, text_body: str, html_body: str) -> Tuple[bool, str]:
+    """Send one email through SendGrid's HTTPS API. Returns (success, message)."""
+    if not settings.SENDGRID_API_KEY:
+        msg = "Email service is not configured (SENDGRID_API_KEY missing)."
         logger.error("[Email] %s", msg)
         return False, msg
 
     try:
         with httpx.Client(timeout=15) as client:
             resp = client.post(
-                RESEND_URL,
-                headers={"Authorization": f"Bearer {settings.RESEND_API_KEY}"},
+                SENDGRID_URL,
+                headers={
+                    "Authorization": f"Bearer {settings.SENDGRID_API_KEY}",
+                    "Content-Type": "application/json"
+                },
                 json={
-                    "from": settings.MAIL_FROM,
-                    "to": [to_email],
+                    "personalizations": [{"to": [{"email": to_email}]}],
+                    "from": {"email": settings.SENDGRID_SENDER_EMAIL, "name": "Westbridge CCRS"},
                     "subject": subject,
-                    "text": text_body,
-                    "html": html_body,
+                    "content": [
+                        {"type": "text/plain", "value": text_body},
+                        {"type": "text/html", "value": html_body}
+                    ]
                 },
             )
+            
         if resp.status_code >= 300:
-            msg = f"Resend rejected the email ({resp.status_code}): {resp.text}"
+            msg = f"SendGrid rejected the email ({resp.status_code}): {resp.text}"
             logger.error("[Email] %s", msg)
             return False, msg
 
@@ -63,7 +68,7 @@ def _otp_html(greeting: str, heading: str, code: str, note: str) -> str:
 
 
 async def send_otp_email(to_email: str, otp_code: str, recipient_name: Optional[str] = None) -> bool:
-    """Password reset code. Returns True if Resend accepted the email."""
+    """Password reset code. Returns True if SendGrid accepted the email."""
     greeting = recipient_name or "Student"
     subject = "Westbridge University CCRS: Password Reset Verification Code"
     text_body = (
@@ -80,7 +85,7 @@ async def send_otp_email(to_email: str, otp_code: str, recipient_name: Optional[
         otp_code,
         "This code expires in 10 minutes. If you did not request a reset, ignore this email.",
     )
-    sent, _ = await asyncio.to_thread(_send_via_resend_sync, to_email, subject, text_body, html_body)
+    sent, _ = await asyncio.to_thread(_send_via_sendgrid_sync, to_email, subject, text_body, html_body)
     return sent
 
 
@@ -101,7 +106,7 @@ async def send_verification_email(to_email: str, code: str, recipient_name: Opti
         code,
         "This code expires in 10 minutes. Enter it in the verification form to activate your account.",
     )
-    return await asyncio.to_thread(_send_via_resend_sync, to_email, subject, text_body, html_body)
+    return await asyncio.to_thread(_send_via_sendgrid_sync, to_email, subject, text_body, html_body)
 
 
 async def send_faculty_credentials_email(
@@ -139,4 +144,4 @@ async def send_faculty_credentials_email(
   </div>
 </body>
 </html>"""
-    return await asyncio.to_thread(_send_via_resend_sync, to_email, subject, text_body, html_body)
+    return await asyncio.to_thread(_send_via_sendgrid_sync, to_email, subject, text_body, html_body)
