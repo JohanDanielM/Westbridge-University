@@ -1,7 +1,7 @@
 import re
 import secrets
 import hashlib
-from typing import Dict, Any, Optional, List
+from typing import Dict, Any, Optional
 from datetime import datetime, timezone, timedelta
 from fastapi import HTTPException, status
 import logging
@@ -35,7 +35,6 @@ async def login_user(login_data: LoginRequest) -> TokenResponse:
     users_coll = get_users_collection()
     identifier = login_data.identifier.strip()
     
-    # Query identifier by student_id, faculty_id, roll_number, or email
     user = await users_coll.find_one({
         "$or": [
             {"student_id": identifier},
@@ -61,14 +60,12 @@ async def login_user(login_data: LoginRequest) -> TokenResponse:
             detail="Invalid credentials. Incorrect password."
         )
         
-    # Check email verification: if email_verified is explicitly False, block login
     if user.get("email_verified", True) is False:
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN,
             detail="Verify your email before signing in."
         )
     
-    # Generate token
     sub_val = user.get("student_id") or user.get("email")
     token_payload = {
         "sub": sub_val,
@@ -78,7 +75,6 @@ async def login_user(login_data: LoginRequest) -> TokenResponse:
     }
     access_token = create_access_token(token_payload)
     
-    # Log login activity
     await log_activity(
         action="LOGIN",
         user_id=sub_val,
@@ -122,7 +118,6 @@ async def login_user(login_data: LoginRequest) -> TokenResponse:
 
 
 async def register_user(register_data: RegisterRequest, current_user: Optional[Dict[str, Any]] = None) -> RegisterResponse:
-    # ... (Keep the exact same register_user logic you already have) ...
     users_coll = get_users_collection()
     records_coll = get_academic_records_collection()
     email_clean = register_data.email.lower().strip()
@@ -305,17 +300,17 @@ async def register_user(register_data: RegisterRequest, current_user: Optional[D
         "terms": []
     })
 
-    try:
-        sent, mailer_msg = await send_verification_email(
-            email_clean, plain_code, register_data.full_name.strip()
+    sent, mailer_msg = await send_verification_email(
+        email_clean, plain_code, register_data.full_name.strip()
+    )
+
+    if not sent:
+        await users_coll.delete_one({"_id": res.inserted_id})
+        await records_coll.delete_one({"student_id": student_id})
+        raise HTTPException(
+            status_code=status.HTTP_502_BAD_GATEWAY,
+            detail=f"Verification email dispatch failed: {mailer_msg}"
         )
-        if not sent:
-            logger.warning(f"Verification email failed: {mailer_msg}")
-    except Exception as e:
-        logger.warning(f"SMTP Error: {e}")
-        logger.info(f"====== TESTING ONLY (REGISTRATION) ======")
-        logger.info(f"REGISTRATION OTP FOR {email_clean} IS: {plain_code}")
-        logger.info(f"=========================================")
 
     await log_activity(
         action="REGISTER_USER",
@@ -339,7 +334,6 @@ async def register_user(register_data: RegisterRequest, current_user: Optional[D
 
 
 async def verify_user_email(payload: VerifyEmailRequest) -> Dict[str, bool]:
-    # (Keep the exact same verify_user_email logic you already have)
     users_coll = get_users_collection()
     email_clean = payload.email.lower().strip()
     code_clean = payload.code.strip()
@@ -418,7 +412,6 @@ async def verify_user_email(payload: VerifyEmailRequest) -> Dict[str, bool]:
 
 
 async def resend_email_verification(payload: ResendVerificationRequest) -> Dict[str, Any]:
-    # (Keep the exact same resend_email_verification logic you already have)
     users_coll = get_users_collection()
     email_clean = payload.email.lower().strip()
     generic_response = {
@@ -454,13 +447,7 @@ async def resend_email_verification(payload: ResendVerificationRequest) -> Dict[
         }
     )
 
-    try:
-        await send_verification_email(email_clean, plain_code, user.get("full_name") or "Student")
-    except Exception as e:
-        logger.warning(f"SMTP Error on resend: {e}")
-        logger.info(f"====== TESTING ONLY (RESEND) ======")
-        logger.info(f"RESEND OTP FOR {email_clean} IS: {plain_code}")
-        logger.info(f"===================================")
+    await send_verification_email(email_clean, plain_code, user.get("full_name") or "Student")
 
     return generic_response
 
@@ -496,14 +483,13 @@ async def request_forgot_password(request_data: ForgotPasswordRequest) -> Messag
     )
 
     recipient_name = user.get("full_name") or user.get("name") or "Student"
-    sent = False
-    try:
-        sent = await send_otp_email(email_clean, otp_code, recipient_name)
-    except Exception as e:
-        logger.warning(f"SMTP Error: {e}")
-        logger.info(f"====== TESTING ONLY (FORGOT PASSWORD) ======")
-        logger.info(f"PASSWORD RESET OTP FOR {email_clean} IS: {otp_code}")
-        logger.info(f"============================================")
+    sent = await send_otp_email(email_clean, otp_code, recipient_name)
+    
+    if not sent:
+        raise HTTPException(
+            status_code=status.HTTP_502_BAD_GATEWAY,
+            detail="We could not send the verification email. Please try again shortly."
+        )
 
     await log_activity(
         action="FORGOT_PASSWORD_REQUEST",
@@ -519,7 +505,6 @@ async def request_forgot_password(request_data: ForgotPasswordRequest) -> Messag
 
 
 async def reset_user_password(request_data: ResetPasswordRequest) -> MessageResponse:
-    # (Keep the exact same reset_user_password logic you already have)
     users_coll = get_users_collection()
     email_clean = request_data.email.strip().lower()
     otp_clean = request_data.otp.strip()
@@ -622,15 +607,15 @@ async def send_otp_for_email(payload: SendOTPRequest) -> MessageResponse:
         )
 
     recipient_name = (user.get("full_name") or user.get("name")) if user else "Student"
+    sent = await send_otp_email(email_clean, otp_code, recipient_name)
     
-    try:
-        await send_otp_email(email_clean, otp_code, recipient_name)
-        logger.info("Verification code dispatched to %s", email_clean)
-    except Exception as e:
-        logger.warning(f"[SMTP Error] Could not send email to {email_clean}. Error: {e}")
-        logger.info(f"====== TESTING ONLY (ONBOARDING) ======")
-        logger.info(f"ONBOARDING OTP FOR {email_clean} IS: {otp_code}")
-        logger.info(f"=======================================")
+    if not sent:
+        raise HTTPException(
+            status_code=status.HTTP_502_BAD_GATEWAY,
+            detail="We could not send the verification email. Please try again shortly."
+        )
+
+    logger.info("Verification code dispatched to %s", email_clean)
 
     return MessageResponse(
         message=f"A 6-digit verification code has been dispatched to {email_clean}.",

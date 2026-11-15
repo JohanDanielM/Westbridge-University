@@ -50,6 +50,9 @@ class Settings(BaseSettings):
     SMTP_HOST: str = os.getenv("SMTP_HOST", "smtp.gmail.com")
     SMTP_PORT: int = int(os.getenv("SMTP_PORT", "587"))
 
+    RESEND_API_KEY: str = ""
+    MAIL_FROM: str = "Westbridge CCRS <onboarding@resend.dev>"
+
     @property
     def cors_origins_list(self) -> List[str]:
         return [origin.strip() for origin in self.CORS_ORIGINS.split(",") if origin.strip()]
