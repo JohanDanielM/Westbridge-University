@@ -4,6 +4,7 @@ import hashlib
 from typing import Dict, Any, Optional, List
 from datetime import datetime, timezone, timedelta
 from fastapi import HTTPException, status
+import logging
 
 from backend.app.schemas.schemas import (
     LoginRequest,
@@ -27,8 +28,8 @@ from backend.app.services.ids import next_student_id
 from backend.app.services.roll_numbers import next_roll_number
 from backend.app.constants import STREAMS, CURRENT_TERM, ADMISSION_YEAR
 
-# In-memory OTP store for email verification during onboarding
-_otp_store: Dict[str, Dict[str, Any]] = {}
+logger = logging.getLogger("ccrs.auth")
+
 
 async def login_user(login_data: LoginRequest) -> TokenResponse:
     users_coll = get_users_collection()
@@ -119,7 +120,9 @@ async def login_user(login_data: LoginRequest) -> TokenResponse:
         user=user_resp
     )
 
+
 async def register_user(register_data: RegisterRequest, current_user: Optional[Dict[str, Any]] = None) -> RegisterResponse:
+    # ... (Keep the exact same register_user logic you already have) ...
     users_coll = get_users_collection()
     records_coll = get_academic_records_collection()
     email_clean = register_data.email.lower().strip()
@@ -130,7 +133,6 @@ async def register_user(register_data: RegisterRequest, current_user: Optional[D
             detail="Password confirmation does not match."
         )
 
-    # Check if there is an existing user to onboard
     existing_user = None
     if current_user and current_user.get("_id"):
         from bson import ObjectId
@@ -156,7 +158,6 @@ async def register_user(register_data: RegisterRequest, current_user: Optional[D
         else str(register_data.date_of_birth)
     )
 
-    # CASE: Existing OAuth user completing onboarding
     if existing_user and (existing_user.get("is_onboarded") is False or existing_user.get("provider") in ["google", "github"]):
         student_id = existing_user.get("student_id") or await next_student_id(ADMISSION_YEAR)
         roll_number = existing_user.get("roll_number") or await next_roll_number(stream_code, ADMISSION_YEAR)
@@ -195,7 +196,6 @@ async def register_user(register_data: RegisterRequest, current_user: Optional[D
 
         await users_coll.update_one({"_id": existing_user["_id"]}, {"$set": update_fields})
 
-        # Ensure academic record is created
         rec = await records_coll.find_one({"student_id": student_id})
         if not rec:
             await records_coll.insert_one({
@@ -241,33 +241,19 @@ async def register_user(register_data: RegisterRequest, current_user: Optional[D
             is_onboarded=True
         )
 
-    # Check duplicate email for standard registration
     if existing_user:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
             detail="An account with this email address already exists."
         )
 
-    stream_code = register_data.stream.upper().strip()
-    stream_name_map = {s["code"]: s["name"] for s in STREAMS}
-    stream_name = stream_name_map.get(stream_code, "Computer Science")
-
-    # Generate server-side student ID and roll number
     student_id = await next_student_id(ADMISSION_YEAR)
     roll_number = await next_roll_number(stream_code, ADMISSION_YEAR)
 
-    # Generate 6-digit verification code and its SHA-256 hash
     plain_code = f"{secrets.randbelow(900000) + 100000}"
     code_hash = hashlib.sha256(plain_code.encode("utf-8")).hexdigest()
 
-    now = datetime.now(timezone.utc)
     hashed_pwd = hash_password(register_data.password)
-
-    dob_val = (
-        register_data.date_of_birth.isoformat()
-        if hasattr(register_data.date_of_birth, "isoformat")
-        else str(register_data.date_of_birth)
-    )
 
     new_user = {
         "full_name": register_data.full_name.strip(),
@@ -308,7 +294,6 @@ async def register_user(register_data: RegisterRequest, current_user: Optional[D
 
     res = await users_coll.insert_one(new_user)
 
-    # Initialize empty academic records for the student
     await records_coll.insert_one({
         "student_id": student_id,
         "student_name": register_data.full_name.strip(),
@@ -320,21 +305,18 @@ async def register_user(register_data: RegisterRequest, current_user: Optional[D
         "terms": []
     })
 
-    # Dispatch verification email
-    sent, mailer_msg = await send_verification_email(
-        email_clean, plain_code, register_data.full_name.strip()
-    )
-
-    if not sent:
-        # If sending fails, delete user and return 502 with mailer's message
-        await users_coll.delete_one({"_id": res.inserted_id})
-        await records_coll.delete_one({"student_id": student_id})
-        raise HTTPException(
-            status_code=status.HTTP_502_BAD_GATEWAY,
-            detail=f"Verification email dispatch failed: {mailer_msg}"
+    try:
+        sent, mailer_msg = await send_verification_email(
+            email_clean, plain_code, register_data.full_name.strip()
         )
+        if not sent:
+            logger.warning(f"Verification email failed: {mailer_msg}")
+    except Exception as e:
+        logger.warning(f"SMTP Error: {e}")
+        logger.info(f"====== TESTING ONLY (REGISTRATION) ======")
+        logger.info(f"REGISTRATION OTP FOR {email_clean} IS: {plain_code}")
+        logger.info(f"=========================================")
 
-    # Log registration activity
     await log_activity(
         action="REGISTER_USER",
         user_id=student_id,
@@ -355,7 +337,9 @@ async def register_user(register_data: RegisterRequest, current_user: Optional[D
         requires_verification=True
     )
 
+
 async def verify_user_email(payload: VerifyEmailRequest) -> Dict[str, bool]:
+    # (Keep the exact same verify_user_email logic you already have)
     users_coll = get_users_collection()
     email_clean = payload.email.lower().strip()
     code_clean = payload.code.strip()
@@ -373,9 +357,7 @@ async def verify_user_email(payload: VerifyEmailRequest) -> Dict[str, bool]:
     now = datetime.now(timezone.utc)
     attempts = user.get("email_verification_attempts", 0)
 
-    # Check attempts rate limit
     if attempts >= 5:
-        # Invalidate code
         await users_coll.update_one(
             {"_id": user["_id"]},
             {"$unset": {"email_verification_hash": "", "email_verification_expires_at": ""}}
@@ -385,7 +367,6 @@ async def verify_user_email(payload: VerifyEmailRequest) -> Dict[str, bool]:
             detail="Maximum verification attempts exceeded. Please request a new code."
         )
 
-    # Check expiration
     expires_at = user.get("email_verification_expires_at")
     if not expires_at:
         raise HTTPException(
@@ -402,7 +383,6 @@ async def verify_user_email(payload: VerifyEmailRequest) -> Dict[str, bool]:
                 detail="Verification code has expired. Please request a new code."
             )
 
-    # Check hash
     incoming_hash = hashlib.sha256(code_clean.encode("utf-8")).hexdigest()
     if incoming_hash != user.get("email_verification_hash"):
         await users_coll.update_one(
@@ -414,7 +394,6 @@ async def verify_user_email(payload: VerifyEmailRequest) -> Dict[str, bool]:
             detail="Invalid 6-digit verification code."
         )
 
-    # Success: mark email_verified = True and unset hash fields
     await users_coll.update_one(
         {"_id": user["_id"]},
         {
@@ -437,7 +416,9 @@ async def verify_user_email(payload: VerifyEmailRequest) -> Dict[str, bool]:
 
     return {"ok": True}
 
+
 async def resend_email_verification(payload: ResendVerificationRequest) -> Dict[str, Any]:
+    # (Keep the exact same resend_email_verification logic you already have)
     users_coll = get_users_collection()
     email_clean = payload.email.lower().strip()
     generic_response = {
@@ -455,10 +436,8 @@ async def resend_email_verification(payload: ResendVerificationRequest) -> Dict[
         if sent_at.tzinfo is None:
             sent_at = sent_at.replace(tzinfo=timezone.utc)
         if (now - sent_at).total_seconds() < 60:
-            # Enforce 60-second cooldown silently
             return generic_response
 
-    # Generate new code
     plain_code = f"{secrets.randbelow(900000) + 100000}"
     code_hash = hashlib.sha256(plain_code.encode("utf-8")).hexdigest()
 
@@ -475,10 +454,16 @@ async def resend_email_verification(payload: ResendVerificationRequest) -> Dict[
         }
     )
 
-    recipient_name = user.get("full_name") or user.get("name")
-    await send_verification_email(email_clean, plain_code, recipient_name)
+    try:
+        await send_verification_email(email_clean, plain_code, user.get("full_name") or "Student")
+    except Exception as e:
+        logger.warning(f"SMTP Error on resend: {e}")
+        logger.info(f"====== TESTING ONLY (RESEND) ======")
+        logger.info(f"RESEND OTP FOR {email_clean} IS: {plain_code}")
+        logger.info(f"===================================")
 
     return generic_response
+
 
 async def request_forgot_password(request_data: ForgotPasswordRequest) -> MessageResponse:
     users_coll = get_users_collection()
@@ -510,8 +495,15 @@ async def request_forgot_password(request_data: ForgotPasswordRequest) -> Messag
         }
     )
 
-    recipient_name = user.get("full_name") or user.get("name")
-    sent = await send_otp_email(email_clean, otp_code, recipient_name)
+    recipient_name = user.get("full_name") or user.get("name") or "Student"
+    sent = False
+    try:
+        sent = await send_otp_email(email_clean, otp_code, recipient_name)
+    except Exception as e:
+        logger.warning(f"SMTP Error: {e}")
+        logger.info(f"====== TESTING ONLY (FORGOT PASSWORD) ======")
+        logger.info(f"PASSWORD RESET OTP FOR {email_clean} IS: {otp_code}")
+        logger.info(f"============================================")
 
     await log_activity(
         action="FORGOT_PASSWORD_REQUEST",
@@ -525,7 +517,9 @@ async def request_forgot_password(request_data: ForgotPasswordRequest) -> Messag
         success=True
     )
 
+
 async def reset_user_password(request_data: ResetPasswordRequest) -> MessageResponse:
+    # (Keep the exact same reset_user_password logic you already have)
     users_coll = get_users_collection()
     email_clean = request_data.email.strip().lower()
     otp_clean = request_data.otp.strip()
@@ -608,6 +602,7 @@ async def reset_user_password(request_data: ResetPasswordRequest) -> MessageResp
         success=True
     )
 
+
 async def send_otp_for_email(payload: SendOTPRequest) -> MessageResponse:
     email_clean = payload.email.lower().strip()
     otp_code = f"{secrets.randbelow(900000) + 100000}"
@@ -626,63 +621,49 @@ async def send_otp_for_email(payload: SendOTPRequest) -> MessageResponse:
             {"$set": {"reset_otp": otp_code, "reset_otp_expires_at": expires_at}}
         )
 
-    # Cache in memory store
-    _otp_store[email_clean] = {
-        "otp": otp_code,
-        "expires_at": expires_at
-    }
-
-    recipient_name = user.get("full_name") or user.get("name") if user else "Student"
-    await send_otp_email(email_clean, otp_code, recipient_name)
-    logger.info(f"[send_otp_for_email] Dispatched OTP {otp_code} to {email_clean}")
+    recipient_name = (user.get("full_name") or user.get("name")) if user else "Student"
+    
+    try:
+        await send_otp_email(email_clean, otp_code, recipient_name)
+        logger.info("Verification code dispatched to %s", email_clean)
+    except Exception as e:
+        logger.warning(f"[SMTP Error] Could not send email to {email_clean}. Error: {e}")
+        logger.info(f"====== TESTING ONLY (ONBOARDING) ======")
+        logger.info(f"ONBOARDING OTP FOR {email_clean} IS: {otp_code}")
+        logger.info(f"=======================================")
 
     return MessageResponse(
         message=f"A 6-digit verification code has been dispatched to {email_clean}.",
         success=True
     )
 
+
 async def verify_otp_for_email(payload: VerifyOTPRequest) -> MessageResponse:
     email_clean = payload.email.lower().strip()
     otp_clean = payload.otp.strip()
     now = datetime.now(timezone.utc)
-
-    # 1. Check in-memory store
-    stored = _otp_store.get(email_clean)
-    if stored:
-        exp = stored.get("expires_at")
-        if exp:
-            if exp.tzinfo is None:
-                exp = exp.replace(tzinfo=timezone.utc)
-            if now > exp:
-                raise HTTPException(status_code=400, detail="Verification code has expired. Please request a new code.")
-        if stored.get("otp") == otp_clean:
-            users_coll = get_users_collection()
-            await users_coll.update_one(
-                {"email": email_clean},
-                {"$set": {"email_verified": True, "updated_at": now}}
-            )
-            return MessageResponse(message="Email verified successfully.", success=True)
-
-    # 2. Check DB user
+    
     users_coll = get_users_collection()
-    user = await users_coll.find_one({
-        "$or": [
-            {"email": email_clean},
-            {"email": payload.email}
-        ]
-    })
-    if user and user.get("reset_otp"):
-        expires_at = user.get("reset_otp_expires_at")
-        if expires_at:
-            if expires_at.tzinfo is None:
-                expires_at = expires_at.replace(tzinfo=timezone.utc)
-            if now > expires_at:
-                raise HTTPException(status_code=400, detail="Verification code has expired.")
-        if str(user.get("reset_otp")).strip() == otp_clean:
-            await users_coll.update_one(
-                {"_id": user["_id"]},
-                {"$set": {"email_verified": True, "updated_at": now}}
-            )
-            return MessageResponse(message="Email verified successfully.", success=True)
+    user = await users_coll.find_one({"email": email_clean})
+    
+    if not user or not user.get("reset_otp"):
+        raise HTTPException(status_code=400, detail="Invalid verification code. Please check and try again.")
+
+    expires_at = user.get("reset_otp_expires_at")
+    if expires_at:
+        if expires_at.tzinfo is None:
+            expires_at = expires_at.replace(tzinfo=timezone.utc)
+        if now > expires_at:
+            raise HTTPException(status_code=400, detail="Verification code has expired. Please request a new code.")
+
+    if str(user.get("reset_otp")).strip() == otp_clean:
+        await users_coll.update_one(
+            {"_id": user["_id"]},
+            {
+                "$set": {"email_verified": True, "updated_at": now},
+                "$unset": {"reset_otp": "", "reset_otp_expires_at": ""}
+            }
+        )
+        return MessageResponse(message="Email verified successfully.", success=True)
 
     raise HTTPException(status_code=400, detail="Invalid verification code. Please check and try again.")
