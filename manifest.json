@@ -1,0 +1,112 @@
+{
+  "title": "Dark Premium SaaS Design System",
+  "id": "9318667735786627530",
+  "institution": "Westbridge University",
+  "portal": "Course & Credit Registration System (CCRS)",
+  "screens": [
+    {
+      "index": 1,
+      "id": "83cdc62860614be398bc055a7de4b8b0",
+      "title": "Westbridge University CCRS \u2014 Redesigned Sign In",
+      "slug": "01_signin",
+      "width": 2560,
+      "height": 2080,
+      "device": "DESKTOP",
+      "image_file": "01_signin.png",
+      "html_file": "01_signin.html",
+      "folder": "screens/01_signin",
+      "description": "Clean, focused authentication interface featuring university branding, dual-column layout with campus photography, single sign-on (SSO) integration, institutional encryption badges, and password visibility toggle."
+    },
+    {
+      "index": 2,
+      "id": "467e05d5f0b341f2b7ac41840ae4d61b",
+      "title": "CCRS Student Dashboard \u2014 Westbridge University",
+      "slug": "02_student_dashboard",
+      "width": 2560,
+      "height": 2834,
+      "device": "DESKTOP",
+      "image_file": "02_student_dashboard.jpg",
+      "html_file": "02_student_dashboard.html",
+      "folder": "screens/02_student_dashboard",
+      "description": "Comprehensive student portal hub presenting academic progress, cumulative GPA metrics, current registered courses, upcoming timetable schedule, registration windows, and advisor alerts."
+    },
+    {
+      "index": 3,
+      "id": "2f08825761e0419890b6b9dd9568bd1e",
+      "title": "Course Catalog \u2014 Westbridge University",
+      "slug": "03_course_catalog",
+      "width": 2560,
+      "height": 3424,
+      "device": "DESKTOP",
+      "image_file": "03_course_catalog.png",
+      "html_file": "03_course_catalog.html",
+      "folder": "screens/03_course_catalog",
+      "description": "Advanced searchable and filterable course catalog with department facets, credit filters, prerequisite validation tags, syllabus previews, professor ratings, and one-click cart additions."
+    },
+    {
+      "index": 4,
+      "id": "27041512d322476f83c1f5944eca175e",
+      "title": "Registration Cart \u2014 Westbridge University",
+      "slug": "04_registration_cart",
+      "width": 2560,
+      "height": 3668,
+      "device": "DESKTOP",
+      "image_file": "04_registration_cart.png",
+      "html_file": "04_registration_cart.html",
+      "folder": "screens/04_registration_cart",
+      "description": "Interactive schedule staging cart featuring weekly calendar visualizer, conflict detection engine, credit limit counter, alternate section pickers, and checkout validation."
+    },
+    {
+      "index": 5,
+      "id": "b2c9210e06b84506b72f15d722157b41",
+      "title": "Registration Confirmation \u2014 Westbridge University",
+      "slug": "05_registration_confirmation",
+      "width": 2560,
+      "height": 2956,
+      "device": "DESKTOP",
+      "image_file": "05_registration_confirmation.png",
+      "html_file": "05_registration_confirmation.html",
+      "folder": "screens/05_registration_confirmation",
+      "description": "Formal enrollment confirmation page with confirmation reference ID, registered course summaries, payment/bursar breakdown, calendar sync options (Google/iCal/Outlook), and next step guides."
+    },
+    {
+      "index": 6,
+      "id": "00ab9a841bee438e93079c5c00bc46d4",
+      "title": "Academic Record \u2014 Westbridge University",
+      "slug": "06_academic_record",
+      "width": 2560,
+      "height": 4532,
+      "device": "DESKTOP",
+      "image_file": "06_academic_record.png",
+      "html_file": "06_academic_record.html",
+      "folder": "screens/06_academic_record",
+      "description": "Official transcript and degree audit view with term-by-term GPA analytics, credit completion distribution, graduation requirements tracker, and downloadable PDF transcript generator."
+    },
+    {
+      "index": 7,
+      "id": "0ceb7c84281a494e8b1089eedd85b58c",
+      "title": "Admin Overview \u2014 Westbridge University CCRS",
+      "slug": "07_admin_overview",
+      "width": 2560,
+      "height": 3192,
+      "device": "DESKTOP",
+      "image_file": "07_admin_overview.png",
+      "html_file": "07_admin_overview.html",
+      "folder": "screens/07_admin_overview",
+      "description": "High-level administrative console displaying enrollment velocity, capacity heatmaps across faculties, waitlist metrics, registration system health, and quick override workflows."
+    },
+    {
+      "index": 8,
+      "id": "deff63315fdf4169b5275e9e56c485c1",
+      "title": "Manage Courses \u2014 Westbridge University CCRS Admin",
+      "slug": "08_manage_courses",
+      "width": 2560,
+      "height": 2112,
+      "device": "DESKTOP",
+      "image_file": "08_manage_courses.png",
+      "html_file": "08_manage_courses.html",
+      "folder": "screens/08_manage_courses",
+      "description": "Administrative course lifecycle and section management interface with capacity adjusters, instructor assignments, classroom scheduling, prerequisite editing, and audit logging."
+    }
+  ]
+}

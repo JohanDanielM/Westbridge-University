@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dark Premium SaaS Design System — Stitch Design Showcase</title>
+  <!-- Tailwind CSS v3 -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <!-- Plus Jakarta Sans & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          },
+          colors: {
+            navy: {
+              950: '#050D1A',
+              900: '#071325',
+              850: '#0A1628',
+              800: '#0D1B2E',
+              700: '#152943',
+              600: '#1E3A5F',
+            },
+            teal: {
+              400: '#2DD4BF',
+              500: '#14B8A6',
+              600: '#0D9488',
+            },
+            cyan: {
+              400: '#38BDF8',
+              500: '#0EA5E9',
+            },
+            coral: {
+              400: '#FF8A65',
+              500: '#FF7A59',
+            }
+          },
+          boxShadow: {
+            'glow': '0 0 35px -5px rgba(20, 184, 166, 0.25)',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      background-color: #071325;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      color: #F8FAFC;
+    }
+    .bg-grid {
+      background-image: radial-gradient(rgba(30, 58, 95, 0.3) 1px, transparent 1px);
+      background-size: 32px 32px;
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-navy-900 text-slate-100 flex flex-col justify-between selection:bg-teal-500 selection:text-white relative overflow-x-hidden">
+  <!-- Ambient background glow effects -->
+  <div class="absolute top-[-10%] left-[20%] w-[600px] h-[600px] bg-teal-500/10 rounded-full blur-[160px] pointer-events-none -z-10"></div>
+  <div class="absolute top-[40%] right-[10%] w-[500px] h-[500px] bg-sky-500/10 rounded-full blur-[150px] pointer-events-none -z-10"></div>
+  <div class="absolute inset-0 bg-grid opacity-50 pointer-events-none -z-10"></div>
+
+  <!-- Header -->
+  <header class="border-b border-navy-700/60 bg-navy-950/70 backdrop-blur-md sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12 h-20 flex items-center justify-between">
+      <div class="flex items-center gap-3.5">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-teal-500 to-cyan-500 p-[1.5px] flex items-center justify-center shadow-lg shadow-teal-500/20">
+          <div class="w-full h-full bg-navy-900 rounded-[10px] flex items-center justify-center">
+            <svg class="w-5 h-5 text-teal-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              <path stroke-linecap="round" stroke-linejoin="round" d="m9 12 2 2 4-4"/>
+            </svg>
+          </div>
+        </div>
+        <div>
+          <h1 class="text-base font-bold text-white tracking-tight flex items-center gap-2">
+            Westbridge University
+            <span class="text-xs font-mono font-medium text-teal-400 bg-teal-500/10 border border-teal-500/20 px-2 py-0.5 rounded-full">CCRS Design System</span>
+          </h1>
+          <p class="text-xs text-slate-400 font-medium">Dark Premium SaaS Design System</p>
+        </div>
+      </div>
+      <div class="flex items-center gap-4">
+        <div class="hidden sm:flex items-center gap-2 text-xs font-mono text-slate-400 bg-navy-850 px-3 py-1.5 rounded-xl border border-navy-700">
+          <span class="text-slate-500">Project ID:</span>
+          <span class="text-teal-400 font-semibold">9318667735786627530</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Intro -->
+  <main class="max-w-7xl mx-auto px-6 lg:px-12 py-12 flex-grow w-full space-y-12">
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-6 border-b border-navy-800">
+      <div class="space-y-3 max-w-3xl">
+        <div class="inline-flex items-center gap-2">
+          <span class="h-2 w-2 rounded-full bg-teal-400 animate-pulse"></span>
+          <span class="text-xs font-bold tracking-widest text-teal-400 uppercase">Stitch Export Completed</span>
+        </div>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+          Westbridge University Course Registration System
+        </h2>
+        <p class="text-sm sm:text-base text-slate-400 leading-relaxed">
+          All 8 screens, raw HTML templates (with Tailwind CSS), and high-resolution screenshots extracted from Google Stitch project <code class="text-teal-300 font-mono text-xs bg-navy-850 px-1.5 py-0.5 rounded">9318667735786627530</code>. Click any card below to launch the live code or view assets.
+        </p>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <div class="bg-navy-850 border border-navy-700 rounded-xl px-4 py-2.5 text-center">
+          <div class="text-2xl font-bold text-teal-400">8</div>
+          <div class="text-[11px] text-slate-400 font-medium">Screens</div>
+        </div>
+        <div class="bg-navy-850 border border-navy-700 rounded-xl px-4 py-2.5 text-center">
+          <div class="text-2xl font-bold text-cyan-400">100%</div>
+          <div class="text-[11px] text-slate-400 font-medium">Responsive</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Screen Cards Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-6">
+      
+      <article class="bg-navy-850 border border-navy-700/80 rounded-2xl overflow-hidden hover:border-teal-500/50 hover:shadow-glow transition-all duration-300 flex flex-col group">
+        <!-- Screenshot Preview Header -->
+        <div class="relative aspect-[16/10] bg-navy-950 overflow-hidden border-b border-navy-800">
+          <img src="01_signin.png" alt="Westbridge University CCRS — Redesigned Sign In" loading="lazy" class="w-full h-full object-cover object-top filter brightness-95 group-hover:scale-[1.03] transition-transform duration-500" />
+          <div class="absolute inset-0 bg-gradient-to-t from-navy-900 via-transparent to-transparent opacity-60"></div>
+          <span class="absolute top-3 left-3 bg-navy-900/80 backdrop-blur-md text-teal-400 font-mono text-xs px-2.5 py-1 rounded-lg border border-teal-500/20 font-bold">
+            #1
+          </span>
+          <span class="absolute top-3 right-3 bg-navy-900/80 backdrop-blur-md text-slate-300 font-mono text-[11px] px-2.5 py-1 rounded-lg border border-white/10">
+            2560 × 2080
+          </span>
+        </div>
+
+        <!-- Content Body -->
+        <div class="p-6 flex flex-col flex-grow justify-between space-y-4">
+          <div class="space-y-2">
+            <h3 class="text-lg font-bold text-white group-hover:text-teal-300 transition-colors leading-snug">
+              Westbridge University CCRS — Redesigned Sign In
+            </h3>
+            <p class="text-xs text-slate-400 font-mono flex items-center gap-1.5">
+              <span class="text-slate-500">ID:</span>
+              <span class="text-slate-300 select-all">83cdc62860614be398bc055a7de4b8b0</span>
+            </p>
+            <p class="text-xs text-slate-400 leading-relaxed pt-1">
+              Clean, focused authentication interface featuring university branding, dual-column layout with campus photography, single sign-on (SSO) integration, institutional encryption badges, and password visibility toggle.
+            </p>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="pt-4 border-t border-navy-800 flex items-center gap-2">
+            <a href="01_signin.html" target="_blank" class="flex-1 bg-gradient-to-r from-teal-500 to-teal-600 hover:from-teal-400 hover:to-teal-500 text-white font-semibold text-xs py-2.5 px-3 rounded-xl flex items-center justify-center gap-1.5 transition-all shadow-md shadow-teal-500/20">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              Open Live Code
+            </a>
+            <a href="01_signin.png" target="_blank" class="bg-navy-900 hover:bg-navy-800 text-slate-300 hover:text-white border border-navy-700 text-xs py-2.5 px-3 rounded-xl flex items-center justify-center gap-1 transition-colors">
+              <svg class="w-3.5 h-3.5 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+              Image
+            </a>
+            <a href="screens/01_signin/code.html" target="_blank" title="Folder path: screens/01_signin" class="bg-navy-900 hover:bg-navy-800 text-slate-400 hover:text-slate-200 border border-navy-700 text-xs py-2.5 px-2.5 rounded-xl flex items-center justify-center transition-colors">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"/></svg>
+            </a>
+          </div>
+        </div>
+      </article>
+    
+      <article class="bg-navy-850 border border-navy-700/80 rounded-2xl overflow-hidden hover:border-teal-500/50 hover:shadow-glow transition-all duration-300 flex flex-col group">
+        <!-- Screenshot Preview Header -->
+        <div class="relative aspect-[16/10] bg-navy-950 overflow-hidden border-b border-navy-800">
+          <img src="02_student_dashboard.jpg" alt="CCRS Student Dashboard — Westbridge University" loading="lazy" class="w-full h-full object-cover object-top filter brightness-95 group-hover:scale-[1.03] transition-transform duration-500" />
+          <div class="absolute inset-0 bg-gradient-to-t from-navy-900 via-transparent to-transparent opacity-60"></div>
+          <span class="absolute top-3 left-3 bg-navy-900/80 backdrop-blur-md text-teal-400 font-mono text-xs px-2.5 py-1 rounded-lg border border-teal-500/20 font-bold">
+            #2
+          </span>
+          <span class="absolute top-3 right-3 bg-navy-900/80 backdrop-blur-md text-slate-300 font-mono text-[11px] px-2.5 py-1 rounded-lg border border-white/10">
+            2560 × 2834
+          </span>
+        </div>
+
+        <!-- Content Body -->
+        <div class="p-6 flex flex-col flex-grow justify-between space-y-4">
+          <div class="space-y-2">
+            <h3 class="text-lg font-bold text-white group-hover:text-teal-300 transition-colors leading-snug">
+              CCRS Student Dashboard — Westbridge University
+            </h3>
+            <p class="text-xs text-slate-400 font-mono flex items-center gap-1.5">
+              <span class="text-slate-500">ID:</span>
+              <span class="text-slate-300 select-all">467e05d5f0b341f2b7ac41840ae4d61b</span>
+            </p>
+            <p class="text-xs text-slate-400 leading-relaxed pt-1">
+              Comprehensive student portal hub presenting academic progress, cumulative GPA metrics, current registered courses, upcoming timetable schedule, registration windows, and advisor alerts.
+            </p>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="pt-4 border-t border-navy-800 flex items-center gap-2">
+            <a href="02_student_dashboard.html" target="_blank" class="flex-1 bg-gradient-to-r from-teal-500 to-teal-600 hover:from-teal-400 hover:to-teal-500 text-white font-semibold text-xs py-2.5 px-3 rounded-xl flex items-center justify-center gap-1.5 transition-all shadow-md shadow-teal-500/20">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              Open Live Code
+            </a>
+            <a href="02_student_dashboard.jpg" target="_blank" class="bg-navy-900 hover:bg-navy-800 text-slate-300 hover:text-white border border-navy-700 text-xs py-2.5 px-3 rounded-xl flex items-center justify-center gap-1 transition-colors">
+              <svg class="w-3.5 h-3.5 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+              Image
+            </a>
+            <a href="screens/02_student_dashboard/code.html" target="_blank" title="Folder path: screens/02_student_dashboard" class="bg-navy-900 hover:bg-navy-800 text-slate-400 hover:text-slate-200 border border-navy-700 text-xs py-2.5 px-2.5 rounded-xl flex items-center justify-center transition-colors">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"/></svg>
+            </a>
+          </div>
+        </div>
+      </article>
+    
+      <article class="bg-navy-850 border border-navy-700/80 rounded-2xl overflow-hidden hover:border-teal-500/50 hover:shadow-glow transition-all duration-300 flex flex-col group">
+        <!-- Screenshot Preview Header -->
+        <div class="relative aspect-[16/10] bg-navy-950 overflow-hidden border-b border-navy-800">
+          <img src="03_course_catalog.png" alt="Course Catalog — Westbridge University" loading="lazy" class="w-full h-full object-cover object-top filter brightness-95 group-hover:scale-[1.03] transition-transform duration-500" />
+          <div class="absolute inset-0 bg-gradient-to-t from-navy-900 via-transparent to-transparent opacity-60"></div>
+          <span class="absolute top-3 left-3 bg-navy-900/80 backdrop-blur-md text-teal-400 font-mono text-xs px-2.5 py-1 rounded-lg border border-teal-500/20 font-bold">
+            #3
+          </span>
+          <span class="absolute top-3 right-3 bg-navy-900/80 backdrop-blur-md text-slate-300 font-mono text-[11px] px-2.5 py-1 rounded-lg border border-white/10">
+            2560 × 3424
+          </span>
+        </div>
+
+        <!-- Content Body -->
+        <div class="p-6 flex flex-col flex-grow justify-between space-y-4">
+          <div class="space-y-2">
+            <h3 class="text-lg font-bold text-white group-hover:text-teal-300 transition-colors leading-snug">
+              Course Catalog — Westbridge University
+            </h3>
+            <p class="text-xs text-slate-400 font-mono flex items-center gap-1.5">
+              <span class="text-slate-500">ID:</span>
+              <span class="text-slate-300 select-all">2f08825761e0419890b6b9dd9568bd1e</span>
+            </p>
+            <p class="text-xs text-slate-400 leading-relaxed pt-1">
+              Advanced searchable and filterable course catalog with department facets, credit filters, prerequisite validation tags, syllabus previews, professor ratings, and one-click cart additions.
+            </p>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="pt-4 border-t border-navy-800 flex items-center gap-2">
+            <a href="03_course_catalog.html" target="_blank" class="flex-1 bg-gradient-to-r from-teal-500 to-teal-600 hover:from-teal-400 hover:to-teal-500 text-white font-semibold text-xs py-2.5 px-3 rounded-xl flex items-center justify-center gap-1.5 transition-all shadow-md shadow-teal-500/20">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              Open Live Code
+            </a>
+            <a href="03_course_catalog.png" target="_blank" class="bg-navy-900 hover:bg-navy-800 text-slate-300 hover:text-white border border-navy-700 text-xs py-2.5 px-3 rounded-xl flex items-center justify-center gap-1 transition-colors">
+              <svg class="w-3.5 h-3.5 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+              Image
+            </a>
+            <a href="screens/03_course_catalog/code.html" target="_blank" title="Folder path: screens/03_course_catalog" class="bg-navy-900 hover:bg-navy-800 text-slate-400 hover:text-slate-200 border border-navy-700 text-xs py-2.5 px-2.5 rounded-xl flex items-center justify-center transition-colors">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"/></svg>
+            </a>
+          </div>
+        </div>
+      </article>
+    
+      <article class="bg-navy-850 border border-navy-700/80 rounded-2xl overflow-hidden hover:border-teal-500/50 hover:shadow-glow transition-all duration-300 flex flex-col group">
+        <!-- Screenshot Preview Header -->
+        <div class="relative aspect-[16/10] bg-navy-950 overflow-hidden border-b border-navy-800">
+          <img src="04_registration_cart.png" alt="Registration Cart — Westbridge University" loading="lazy" class="w-full h-full object-cover object-top filter brightness-95 group-hover:scale-[1.03] transition-transform duration-500" />
+          <div class="absolute inset-0 bg-gradient-to-t from-navy-900 via-transparent to-transparent opacity-60"></div>
+          <span class="absolute top-3 left-3 bg-navy-900/80 backdrop-blur-md text-teal-400 font-mono text-xs px-2.5 py-1 rounded-lg border border-teal-500/20 font-bold">
+            #4
+          </span>
+          <span class="absolute top-3 right-3 bg-navy-900/80 backdrop-blur-md text-slate-300 font-mono text-[11px] px-2.5 py-1 rounded-lg border border-white/10">
+            2560 × 3668
+          </span>
+        </div>
+
+        <!-- Content Body -->
+        <div class="p-6 flex flex-col flex-grow justify-between space-y-4">
+          <div class="space-y-2">
+            <h3 class="text-lg font-bold text-white group-hover:text-teal-300 transition-colors leading-snug">
+              Registration Cart — Westbridge University
+            </h3>
+            <p class="text-xs text-slate-400 font-mono flex items-center gap-1.5">
+              <span class="text-slate-500">ID:</span>
+              <span class="text-slate-300 select-all">27041512d322476f83c1f5944eca175e</span>
+            </p>
+            <p class="text-xs text-slate-400 leading-relaxed pt-1">
+              Interactive schedule staging cart featuring weekly calendar visualizer, conflict detection engine, credit limit counter, alternate section pickers, and checkout validation.
+            </p>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="pt-4 border-t border-navy-800 flex items-center gap-2">
+            <a href="04_registration_cart.html" target="_blank" class="flex-1 bg-gradient-to-r from-teal-500 to-teal-600 hover:from-teal-400 hover:to-teal-500 text-white font-semibold text-xs py-2.5 px-3 rounded-xl flex items-center justify-center gap-1.5 transition-all shadow-md shadow-teal-500/20">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              Open Live Code
+            </a>
+            <a href="04_registration_cart.png" target="_blank" class="bg-navy-900 hover:bg-navy-800 text-slate-300 hover:text-white border border-navy-700 text-xs py-2.5 px-3 rounded-xl flex items-center justify-center gap-1 transition-colors">
+              <svg class="w-3.5 h-3.5 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+              Image
+            </a>
+            <a href="screens/04_registration_cart/code.html" target="_blank" title="Folder path: screens/04_registration_cart" class="bg-navy-900 hover:bg-navy-800 text-slate-400 hover:text-slate-200 border border-navy-700 text-xs py-2.5 px-2.5 rounded-xl flex items-center justify-center transition-colors">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"/></svg>
+            </a>
+          </div>
+        </div>
+      </article>
+    
+      <article class="bg-navy-850 border border-navy-700/80 rounded-2xl overflow-hidden hover:border-teal-500/50 hover:shadow-glow transition-all duration-300 flex flex-col group">
+        <!-- Screenshot Preview Header -->
+        <div class="relative aspect-[16/10] bg-navy-950 overflow-hidden border-b border-navy-800">
+          <img src="05_registration_confirmation.png" alt="Registration Confirmation — Westbridge University" loading="lazy" class="w-full h-full object-cover object-top filter brightness-95 group-hover:scale-[1.03] transition-transform duration-500" />
+          <div class="absolute inset-0 bg-gradient-to-t from-navy-900 via-transparent to-transparent opacity-60"></div>
+          <span class="absolute top-3 left-3 bg-navy-900/80 backdrop-blur-md text-teal-400 font-mono text-xs px-2.5 py-1 rounded-lg border border-teal-500/20 font-bold">
+            #5
+          </span>
+          <span class="absolute top-3 right-3 bg-navy-900/80 backdrop-blur-md text-slate-300 font-mono text-[11px] px-2.5 py-1 rounded-lg border border-white/10">
+            2560 × 2956
+          </span>
+        </div>
+
+        <!-- Content Body -->
+        <div class="p-6 flex flex-col flex-grow justify-between space-y-4">
+          <div class="space-y-2">
+            <h3 class="text-lg font-bold text-white group-hover:text-teal-300 transition-colors leading-snug">
+              Registration Confirmation — Westbridge University
+            </h3>
+            <p class="text-xs text-slate-400 font-mono flex items-center gap-1.5">
+              <span class="text-slate-500">ID:</span>
+              <span class="text-slate-300 select-all">b2c9210e06b84506b72f15d722157b41</span>
+            </p>
+            <p class="text-xs text-slate-400 leading-relaxed pt-1">
+              Formal enrollment confirmation page with confirmation reference ID, registered course summaries, payment/bursar breakdown, calendar sync options (Google/iCal/Outlook), and next step guides.
+            </p>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="pt-4 border-t border-navy-800 flex items-center gap-2">
+            <a href="05_registration_confirmation.html" target="_blank" class="flex-1 bg-gradient-to-r from-teal-500 to-teal-600 hover:from-teal-400 hover:to-teal-500 text-white font-semibold text-xs py-2.5 px-3 rounded-xl flex items-center justify-center gap-1.5 transition-all shadow-md shadow-teal-500/20">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              Open Live Code
+            </a>
+            <a href="05_registration_confirmation.png" target="_blank" class="bg-navy-900 hover:bg-navy-800 text-slate-300 hover:text-white border border-navy-700 text-xs py-2.5 px-3 rounded-xl flex items-center justify-center gap-1 transition-colors">
+              <svg class="w-3.5 h-3.5 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+              Image
+            </a>
+            <a href="screens/05_registration_confirmation/code.html" target="_blank" title="Folder path: screens/05_registration_confirmation" class="bg-navy-900 hover:bg-navy-800 text-slate-400 hover:text-slate-200 border border-navy-700 text-xs py-2.5 px-2.5 rounded-xl flex items-center justify-center transition-colors">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"/></svg>
+            </a>
+          </div>
+        </div>
+      </article>
+    
+      <article class="bg-navy-850 border border-navy-700/80 rounded-2xl overflow-hidden hover:border-teal-500/50 hover:shadow-glow transition-all duration-300 flex flex-col group">
+        <!-- Screenshot Preview Header -->
+        <div class="relative aspect-[16/10] bg-navy-950 overflow-hidden border-b border-navy-800">
+          <img src="06_academic_record.png" alt="Academic Record — Westbridge University" loading="lazy" class="w-full h-full object-cover object-top filter brightness-95 group-hover:scale-[1.03] transition-transform duration-500" />
+          <div class="absolute inset-0 bg-gradient-to-t from-navy-900 via-transparent to-transparent opacity-60"></div>
+          <span class="absolute top-3 left-3 bg-navy-900/80 backdrop-blur-md text-teal-400 font-mono text-xs px-2.5 py-1 rounded-lg border border-teal-500/20 font-bold">
+            #6
+          </span>
+          <span class="absolute top-3 right-3 bg-navy-900/80 backdrop-blur-md text-slate-300 font-mono text-[11px] px-2.5 py-1 rounded-lg border border-white/10">
+            2560 × 4532
+          </span>
+        </div>
+
+        <!-- Content Body -->
+        <div class="p-6 flex flex-col flex-grow justify-between space-y-4">
+          <div class="space-y-2">
+            <h3 class="text-lg font-bold text-white group-hover:text-teal-300 transition-colors leading-snug">
+              Academic Record — Westbridge University
+            </h3>
+            <p class="text-xs text-slate-400 font-mono flex items-center gap-1.5">
+              <span class="text-slate-500">ID:</span>
+              <span class="text-slate-300 select-all">00ab9a841bee438e93079c5c00bc46d4</span>
+            </p>
+            <p class="text-xs text-slate-400 leading-relaxed pt-1">
+              Official transcript and degree audit view with term-by-term GPA analytics, credit completion distribution, graduation requirements tracker, and downloadable PDF transcript generator.
+            </p>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="pt-4 border-t border-navy-800 flex items-center gap-2">
+            <a href="06_academic_record.html" target="_blank" class="flex-1 bg-gradient-to-r from-teal-500 to-teal-600 hover:from-teal-400 hover:to-teal-500 text-white font-semibold text-xs py-2.5 px-3 rounded-xl flex items-center justify-center gap-1.5 transition-all shadow-md shadow-teal-500/20">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              Open Live Code
+            </a>
+            <a href="06_academic_record.png" target="_blank" class="bg-navy-900 hover:bg-navy-800 text-slate-300 hover:text-white border border-navy-700 text-xs py-2.5 px-3 rounded-xl flex items-center justify-center gap-1 transition-colors">
+              <svg class="w-3.5 h-3.5 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+              Image
+            </a>
+            <a href="screens/06_academic_record/code.html" target="_blank" title="Folder path: screens/06_academic_record" class="bg-navy-900 hover:bg-navy-800 text-slate-400 hover:text-slate-200 border border-navy-700 text-xs py-2.5 px-2.5 rounded-xl flex items-center justify-center transition-colors">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"/></svg>
+            </a>
+          </div>
+        </div>
+      </article>
+    
+      <article class="bg-navy-850 border border-navy-700/80 rounded-2xl overflow-hidden hover:border-teal-500/50 hover:shadow-glow transition-all duration-300 flex flex-col group">
+        <!-- Screenshot Preview Header -->
+        <div class="relative aspect-[16/10] bg-navy-950 overflow-hidden border-b border-navy-800">
+          <img src="07_admin_overview.png" alt="Admin Overview — Westbridge University CCRS" loading="lazy" class="w-full h-full object-cover object-top filter brightness-95 group-hover:scale-[1.03] transition-transform duration-500" />
+          <div class="absolute inset-0 bg-gradient-to-t from-navy-900 via-transparent to-transparent opacity-60"></div>
+          <span class="absolute top-3 left-3 bg-navy-900/80 backdrop-blur-md text-teal-400 font-mono text-xs px-2.5 py-1 rounded-lg border border-teal-500/20 font-bold">
+            #7
+          </span>
+          <span class="absolute top-3 right-3 bg-navy-900/80 backdrop-blur-md text-slate-300 font-mono text-[11px] px-2.5 py-1 rounded-lg border border-white/10">
+            2560 × 3192
+          </span>
+        </div>
+
+        <!-- Content Body -->
+        <div class="p-6 flex flex-col flex-grow justify-between space-y-4">
+          <div class="space-y-2">
+            <h3 class="text-lg font-bold text-white group-hover:text-teal-300 transition-colors leading-snug">
+              Admin Overview — Westbridge University CCRS
+            </h3>
+            <p class="text-xs text-slate-400 font-mono flex items-center gap-1.5">
+              <span class="text-slate-500">ID:</span>
+              <span class="text-slate-300 select-all">0ceb7c84281a494e8b1089eedd85b58c</span>
+            </p>
+            <p class="text-xs text-slate-400 leading-relaxed pt-1">
+              High-level administrative console displaying enrollment velocity, capacity heatmaps across faculties, waitlist metrics, registration system health, and quick override workflows.
+            </p>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="pt-4 border-t border-navy-800 flex items-center gap-2">
+            <a href="07_admin_overview.html" target="_blank" class="flex-1 bg-gradient-to-r from-teal-500 to-teal-600 hover:from-teal-400 hover:to-teal-500 text-white font-semibold text-xs py-2.5 px-3 rounded-xl flex items-center justify-center gap-1.5 transition-all shadow-md shadow-teal-500/20">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              Open Live Code
+            </a>
+            <a href="07_admin_overview.png" target="_blank" class="bg-navy-900 hover:bg-navy-800 text-slate-300 hover:text-white border border-navy-700 text-xs py-2.5 px-3 rounded-xl flex items-center justify-center gap-1 transition-colors">
+              <svg class="w-3.5 h-3.5 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+              Image
+            </a>
+            <a href="screens/07_admin_overview/code.html" target="_blank" title="Folder path: screens/07_admin_overview" class="bg-navy-900 hover:bg-navy-800 text-slate-400 hover:text-slate-200 border border-navy-700 text-xs py-2.5 px-2.5 rounded-xl flex items-center justify-center transition-colors">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"/></svg>
+            </a>
+          </div>
+        </div>
+      </article>
+    
+      <article class="bg-navy-850 border border-navy-700/80 rounded-2xl overflow-hidden hover:border-teal-500/50 hover:shadow-glow transition-all duration-300 flex flex-col group">
+        <!-- Screenshot Preview Header -->
+        <div class="relative aspect-[16/10] bg-navy-950 overflow-hidden border-b border-navy-800">
+          <img src="08_manage_courses.png" alt="Manage Courses — Westbridge University CCRS Admin" loading="lazy" class="w-full h-full object-cover object-top filter brightness-95 group-hover:scale-[1.03] transition-transform duration-500" />
+          <div class="absolute inset-0 bg-gradient-to-t from-navy-900 via-transparent to-transparent opacity-60"></div>
+          <span class="absolute top-3 left-3 bg-navy-900/80 backdrop-blur-md text-teal-400 font-mono text-xs px-2.5 py-1 rounded-lg border border-teal-500/20 font-bold">
+            #8
+          </span>
+          <span class="absolute top-3 right-3 bg-navy-900/80 backdrop-blur-md text-slate-300 font-mono text-[11px] px-2.5 py-1 rounded-lg border border-white/10">
+            2560 × 2112
+          </span>
+        </div>
+
+        <!-- Content Body -->
+        <div class="p-6 flex flex-col flex-grow justify-between space-y-4">
+          <div class="space-y-2">
+            <h3 class="text-lg font-bold text-white group-hover:text-teal-300 transition-colors leading-snug">
+              Manage Courses — Westbridge University CCRS Admin
+            </h3>
+            <p class="text-xs text-slate-400 font-mono flex items-center gap-1.5">
+              <span class="text-slate-500">ID:</span>
+              <span class="text-slate-300 select-all">deff63315fdf4169b5275e9e56c485c1</span>
+            </p>
+            <p class="text-xs text-slate-400 leading-relaxed pt-1">
+              Administrative course lifecycle and section management interface with capacity adjusters, instructor assignments, classroom scheduling, prerequisite editing, and audit logging.
+            </p>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="pt-4 border-t border-navy-800 flex items-center gap-2">
+            <a href="08_manage_courses.html" target="_blank" class="flex-1 bg-gradient-to-r from-teal-500 to-teal-600 hover:from-teal-400 hover:to-teal-500 text-white font-semibold text-xs py-2.5 px-3 rounded-xl flex items-center justify-center gap-1.5 transition-all shadow-md shadow-teal-500/20">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              Open Live Code
+            </a>
+            <a href="08_manage_courses.png" target="_blank" class="bg-navy-900 hover:bg-navy-800 text-slate-300 hover:text-white border border-navy-700 text-xs py-2.5 px-3 rounded-xl flex items-center justify-center gap-1 transition-colors">
+              <svg class="w-3.5 h-3.5 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+              Image
+            </a>
+            <a href="screens/08_manage_courses/code.html" target="_blank" title="Folder path: screens/08_manage_courses" class="bg-navy-900 hover:bg-navy-800 text-slate-400 hover:text-slate-200 border border-navy-700 text-xs py-2.5 px-2.5 rounded-xl flex items-center justify-center transition-colors">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"/></svg>
+            </a>
+          </div>
+        </div>
+      </article>
+    
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-navy-800 bg-navy-950/80 backdrop-blur-md py-6 mt-16">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-400">
+      <div>
+        © 2026 Westbridge University. Generated with Google Stitch MCP.
+      </div>
+      <div class="flex items-center gap-4 text-slate-500 font-mono text-[11px]">
+        <span>Project: 9318667735786627530</span>
+        <span>•</span>
+        <span>Dark Premium SaaS Theme</span>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

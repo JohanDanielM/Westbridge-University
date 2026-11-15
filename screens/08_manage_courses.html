@@ -1,0 +1,964 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;family=Plus+Jakarta+Sans:wght@500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "primary": "#4fdbc8", "on-secondary-fixed": "#3c0700", "secondary": "#ffb4a2", "inverse-primary": "#006b5f", "on-secondary-fixed-variant": "#862208", "secondary-container": "#862208", "background": "#071325", "on-tertiary-fixed": "#001e2c", "surface-container-lowest": "#030e20", "surface-container-highest": "#2a3548", "inverse-on-surface": "#253144", "secondary-fixed-dim": "#ffb4a2", "on-error": "#690005", "primary-fixed": "#71f8e4", "on-secondary-container": "#ff9b82", "on-secondary": "#621100", "on-background": "#d7e3fc", "outline": "#859490", "tertiary-fixed-dim": "#7bd0ff", "surface-dim": "#071325", "on-primary-fixed": "#00201c", "inverse-surface": "#d7e3fc", "secondary-fixed": "#ffdad2", "surface-container-low": "#101c2e", "surface-container-high": "#1f2a3d", "primary-fixed-dim": "#4fdbc8", "surface-tint": "#4fdbc8", "on-primary-container": "#00423b", "error": "#ffb4ab", "tertiary-container": "#1eb0ea", "on-tertiary-container": "#003f58", "on-primary-fixed-variant": "#005048", "on-primary": "#003731", "surface-container": "#142032", "outline-variant": "#3c4947", "on-surface": "#d7e3fc", "surface-bright": "#2e394d", "primary-container": "#14b8a6", "surface": "#071325", "on-tertiary": "#00354a", "tertiary-fixed": "#c4e7ff", "surface-variant": "#2a3548", "error-container": "#93000a", "on-surface-variant": "#bbcac6", "on-error-container": "#ffdad6", "on-tertiary-fixed-variant": "#004c69", "tertiary": "#7bd0ff" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "gutter-mobile": "1rem", "space-md": "1rem", "space-sm": "0.5rem", "gutter": "1.5rem", "space-lg": "1.5rem", "space-xl": "2rem", "space-xs": "0.25rem", "margin-mobile": "1rem", "margin": "2.5rem" }, "fontFamily": { "body-lg": [ "Inter" ], "label-code-sm": [ "JetBrains Mono" ], "headline-lg-mobile": [ "Plus Jakarta Sans" ], "headline-sm": [ "Plus Jakarta Sans" ], "display": [ "Plus Jakarta Sans" ], "label-code-lg": [ "JetBrains Mono" ], "display-mobile": [ "Plus Jakarta Sans" ], "headline-md": [ "Plus Jakarta Sans" ], "headline-lg": [ "Plus Jakarta Sans" ], "body-sm": [ "Inter" ], "headline-xl": [ "Plus Jakarta Sans" ], "label-code-md": [ "JetBrains Mono" ], "body-md": [ "Inter" ], "headline-xl-mobile": [ "Plus Jakarta Sans" ] }, "fontSize": { "body-lg": [ "1.125rem", { "lineHeight": "1.75rem", "fontWeight": "400" } ], "label-code-sm": [ "0.6875rem", { "lineHeight": "0.875rem", "letterSpacing": "0.04em", "fontWeight": "500" } ], "headline-lg-mobile": [ "1.5rem", { "lineHeight": "2rem", "letterSpacing": "-0.015em", "fontWeight": "700" } ], "headline-sm": [ "1.25rem", { "lineHeight": "1.75rem", "letterSpacing": "-0.01em", "fontWeight": "600" } ], "display": [ "3.5rem", { "lineHeight": "4rem", "letterSpacing": "-0.03em", "fontWeight": "800" } ], "label-code-lg": [ "0.9375rem", { "lineHeight": "1.25rem", "letterSpacing": "0.02em", "fontWeight": "600" } ], "display-mobile": [ "2.25rem", { "lineHeight": "2.75rem", "letterSpacing": "-0.02em", "fontWeight": "800" } ], "headline-md": [ "1.5rem", { "lineHeight": "2rem", "letterSpacing": "-0.015em", "fontWeight": "600" } ], "headline-lg": [ "2rem", { "lineHeight": "2.5rem", "letterSpacing": "-0.02em", "fontWeight": "700" } ], "body-sm": [ "0.875rem", { "lineHeight": "1.25rem", "fontWeight": "400" } ], "headline-xl": [ "2.5rem", { "lineHeight": "3rem", "letterSpacing": "-0.025em", "fontWeight": "700" } ], "label-code-md": [ "0.8125rem", { "lineHeight": "1rem", "letterSpacing": "0.02em", "fontWeight": "500" } ], "body-md": [ "1rem", { "lineHeight": "1.5rem", "fontWeight": "400" } ], "headline-xl-mobile": [ "1.75rem", { "lineHeight": "2.25rem", "letterSpacing": "-0.02em", "fontWeight": "700" } ] } } } };</script></head><body class="bg-surface font-body-md text-on-surface antialiased"><aside class="fixed left-0 top-0 h-full w-[260px] bg-surface-container-low/90 backdrop-blur-xl z-50 flex flex-col justify-between shadow-[0_1px_8px_rgba(0,0,0,0.25)]"><div class="flex flex-col"><div class="h-16 px-gutter flex items-center gap-space-sm"><div class="w-10 h-10 rounded-xl bg-surface-container-high flex items-center justify-center text-primary shadow-[0_0_16px_rgba(20,184,166,0.2)]"><span class="material-symbols-outlined text-[24px]">shield</span></div><div class="flex flex-col"><span class="font-headline-sm text-headline-sm text-on-surface font-bold tracking-tight leading-none">Westbridge Univ.</span><span class="font-label-code-sm text-label-code-sm text-primary tracking-wider uppercase mt-1">CCRS ADMIN</span></div></div><div class="px-gutter my-space-xs"><div class="h-[1px] w-full bg-outline-variant/30"></div></div><nav class="flex flex-col gap-space-xs px-space-md pt-space-sm" data-active-classes="bg-primary-container text-on-primary font-bold shadow-[0_0_16px_rgba(20,184,166,0.35)]"><a class="flex items-center px-space-md py-space-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all font-headline-sm text-body-sm font-semibold" data-path="overview" href="#">Overview</a><a aria-current="page" class="flex items-center px-space-md py-space-sm rounded-xl transition-all bg-primary-container text-on-primary font-bold shadow-[0_0_16px_rgba(20,184,166,0.35)]" data-path="manage-courses" href="#">Manage Courses</a><a class="flex items-center px-space-md py-space-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all font-headline-sm text-body-sm font-semibold" data-path="waitlists" href="#">Waitlists</a><a class="flex items-center px-space-md py-space-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all font-headline-sm text-body-sm font-semibold" data-path="reports" href="#">Reports</a><a class="flex items-center px-space-md py-space-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all font-headline-sm text-body-sm font-semibold" data-path="settings" href="#">Settings</a></nav></div><div class="p-space-md m-space-sm rounded-xl bg-surface-container/60 backdrop-blur-md"><div class="flex items-center justify-between gap-space-sm"><div class="flex items-center gap-space-sm min-w-0"><div class="w-9 h-9 rounded-full bg-primary flex items-center justify-center flex-shrink-0 text-on-primary font-headline-sm text-body-sm font-bold shadow-[0_0_12px_rgba(79,219,200,0.3)]">MC</div><div class="flex flex-col min-w-0"><span class="font-headline-sm text-body-sm font-semibold text-on-surface truncate leading-tight">Dr. Melissa Carter</span><span class="font-body-sm text-label-code-sm text-on-surface-variant truncate leading-none mt-1">Registrar Office</span></div></div><button class="p-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container-highest hover:text-error transition-all flex items-center justify-center flex-shrink-0" title="Sign out" type="button"><span class="material-symbols-outlined text-[20px]">logout</span></button></div></div></aside><div class="pl-[260px]"><header class="fixed top-0 left-[260px] right-0 h-16 bg-surface/80 backdrop-blur-xl z-40 px-gutter flex items-center justify-between shadow-[0_1px_8px_rgba(0,0,0,0.15)]"><div class="flex items-center gap-space-lg"><div class="flex flex-col"><span class="font-headline-sm text-headline-sm text-on-surface font-bold leading-tight">Manage Courses</span><span class="font-body-sm text-label-code-sm text-tertiary leading-none mt-0.5">Fall 2026 Semester</span></div><div class="inline-flex items-center gap-space-xs px-space-md py-1 rounded-full bg-surface-container-high/80 text-primary shadow-[0_0_14px_rgba(20,184,166,0.25)]"><span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span><span class="font-label-code-sm text-label-code-sm font-semibold">Registration Open · Closes Nov 20</span></div></div><div class="flex items-center gap-space-md"><button aria-label="Notifications" class="w-10 h-10 rounded-xl bg-surface-container hover:bg-surface-container-high text-on-surface flex items-center justify-center transition-all relative" type="button"><span class="material-symbols-outlined text-[22px]">notifications</span><span class="absolute -top-1 -right-1 w-5 h-5 rounded-full bg-secondary-container text-on-secondary-container font-label-code-sm text-label-code-sm font-bold flex items-center justify-center ring-2 ring-surface">5</span></button><button aria-label="Admin Profile Menu" class="w-9 h-9 rounded-full bg-primary flex items-center justify-center text-on-primary ring-2 ring-primary/30 hover:ring-primary transition-all focus:outline-none" type="button"><span class="material-symbols-outlined text-[20px]">person</span></button></div></header><main class="relative pt-16 bg-surface min-h-screen"><div class="flex flex-col w-full px-gutter py-space-lg text-on-surface">
+<!-- Substrate Ambient Canvas Elements -->
+<div class="fixed inset-0 pointer-events-none -z-10 overflow-hidden">
+<div class="absolute -top-[18%] -left-[10%] w-[580px] h-[580px] rounded-full bg-primary/10 blur-[130px]"></div>
+<div class="absolute top-[40%] right-[-5%] w-[480px] h-[480px] rounded-full bg-tertiary-container/15 blur-[140px]"></div>
+<div class="absolute bottom-[-10%] left-[25%] w-[520px] h-[520px] rounded-full bg-secondary-container/20 blur-[150px]"></div>
+</div>
+<!-- SECTION 1: CONTEXT HEADER & COMMAND ACTIONS -->
+<div class="flex flex-col gap-space-lg mb-space-lg">
+<!-- Breadcrumb & Status Marker -->
+<div class="flex flex-wrap items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-xs font-label-code-sm text-label-code-sm tracking-wider uppercase">
+<span class="text-on-surface-variant">ADMINISTRATIVE COMMAND</span>
+<span class="text-outline-variant">/</span>
+<span class="text-primary font-semibold">Academic Inventory</span>
+<span class="text-outline-variant">/</span>
+<span class="text-tertiary">Catalog Audit &amp; Provisioning</span>
+</div>
+<div class="flex items-center gap-space-sm">
+<div class="flex items-center gap-space-xs px-space-md py-1 rounded-full bg-surface-container-high/90 text-primary shadow-[0_0_12px_rgba(20,184,166,0.18)]">
+<span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+<span class="font-label-code-sm text-label-code-sm font-semibold">Live System Sync Active</span>
+</div>
+<span class="font-label-code-sm text-label-code-sm text-on-surface-variant">CRN Root Rev: 2026.08</span>
+</div>
+</div>
+<!-- Title & Action Matrix -->
+<div class="flex flex-col xl:flex-row xl:items-end justify-between gap-space-lg">
+<div>
+<h1 class="font-headline-lg text-headline-lg font-bold text-on-surface tracking-tight">
+          Manage Courses
+        </h1>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1 max-w-2xl">
+          Fall 2026 · Provision course syllabi, control registrar enrolment caps, monitor real-time waitlists, and resolve prerequisite dependency chains across university departments.
+        </p>
+</div>
+<!-- Action Area: Search + Filter Triggers + Primary Controls -->
+<div class="flex flex-wrap items-center gap-space-sm">
+<!-- Search Input -->
+<div class="relative w-full sm:w-72">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-[19px] text-outline">search</span>
+<input class="w-full h-11 pl-10 pr-space-md rounded-xl bg-surface-container-lowest/80 text-on-surface placeholder:text-outline text-body-sm font-body-sm focus:outline-none focus:ring-2 focus:ring-primary/40 focus:bg-surface-container-low transition-all" placeholder="Search by code or name..." type="text"/>
+<kbd class="absolute right-3 top-1/2 -translate-y-1/2 font-label-code-sm text-[10px] text-on-surface-variant bg-surface-container-high px-1.5 py-0.5 rounded">⌘K</kbd>
+</div>
+<!-- Filter Dropdown Triggers -->
+<div class="inline-flex items-center gap-space-xs bg-surface-container-low/90 backdrop-blur-md p-1 rounded-xl">
+<button class="h-9 px-space-md rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-headline-sm text-body-sm flex items-center gap-1.5 transition-all" type="button">
+<span class="text-on-surface-variant text-[11px] font-label-code-sm uppercase">Dept:</span>
+<span class="font-semibold">All</span>
+<span class="material-symbols-outlined text-[16px] text-outline">expand_more</span>
+</button>
+<button class="h-9 px-space-md rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-headline-sm text-body-sm flex items-center gap-1.5 transition-all" type="button">
+<span class="text-on-surface-variant text-[11px] font-label-code-sm uppercase">Status:</span>
+<span class="font-semibold">All</span>
+<span class="material-symbols-outlined text-[16px] text-outline">expand_more</span>
+</button>
+<button class="h-9 px-space-md rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-headline-sm text-body-sm flex items-center gap-1.5 transition-all" type="button">
+<span class="text-on-surface-variant text-[11px] font-label-code-sm uppercase">CR:</span>
+<span class="font-semibold">All</span>
+<span class="material-symbols-outlined text-[16px] text-outline">expand_more</span>
+</button>
+</div>
+<!-- Export Secondary Button -->
+<button class="h-11 px-space-md rounded-xl bg-surface-container-high/70 hover:bg-surface-container-highest text-primary font-headline-sm text-body-sm font-semibold flex items-center gap-2 transition-all shadow-[0_4px_16px_rgba(0,0,0,0.2)]" type="button">
+<span class="material-symbols-outlined text-[19px]">file_download</span>
+<span>Export</span>
+</button>
+<!-- Primary Glowing Button -->
+<button class="h-11 px-space-lg rounded-xl bg-gradient-to-r from-primary-container via-tertiary-container to-primary text-on-primary font-headline-sm text-body-sm font-bold flex items-center gap-2 shadow-[0_0_24px_rgba(20,184,166,0.45)] hover:shadow-[0_0_32px_rgba(20,184,166,0.65)] hover:scale-[1.01] active:scale-[0.98] transition-all" id="btn-open-add-drawer" type="button">
+<span class="material-symbols-outlined text-[20px]">add</span>
+<span>Add Course</span>
+</button>
+</div>
+</div>
+</div>
+<!-- SECTION 2: FLOATING BULK SELECTION ACTION BAR -->
+<div class="w-full mb-space-md transition-all duration-300" id="bulk-selection-bar">
+<div class="w-full rounded-2xl bg-surface-container-high/90 backdrop-blur-xl px-space-lg py-space-sm flex flex-wrap items-center justify-between gap-space-md shadow-[0_12px_36px_rgba(0,0,0,0.4)]">
+<!-- Left: Selection status and indicator -->
+<div class="flex items-center gap-space-md">
+<label class="relative flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-5 h-5 rounded bg-primary flex items-center justify-center text-on-primary shadow-[0_0_10px_rgba(79,219,200,0.4)]">
+<span class="material-symbols-outlined text-[16px] font-bold">check</span>
+</div>
+</label>
+<div class="flex items-center gap-space-xs">
+<span class="font-headline-sm text-body-md font-bold text-on-surface">3 courses selected</span>
+<span class="text-outline-variant">·</span>
+<span class="font-label-code-sm text-label-code-sm text-tertiary font-medium">118 Students Total Impacted</span>
+</div>
+</div>
+<!-- Right: Action clusters -->
+<div class="flex items-center flex-wrap gap-space-xs sm:gap-space-sm">
+<button class="h-9 px-space-md rounded-xl bg-surface-container hover:bg-surface-container-highest text-on-surface font-headline-sm text-body-sm font-semibold flex items-center gap-1.5 transition-all" type="button">
+<span class="material-symbols-outlined text-[17px] text-error">lock</span>
+<span>Close Enrolment</span>
+</button>
+<button class="h-9 px-space-md rounded-xl bg-surface-container hover:bg-surface-container-highest text-on-surface font-headline-sm text-body-sm font-semibold flex items-center gap-1.5 transition-all" type="button">
+<span class="material-symbols-outlined text-[17px] text-primary">lock_open</span>
+<span>Open Enrolment</span>
+</button>
+<button class="h-9 px-space-md rounded-xl bg-surface-container hover:bg-surface-container-highest text-tertiary font-headline-sm text-body-sm font-semibold flex items-center gap-1.5 transition-all" type="button">
+<span class="material-symbols-outlined text-[17px]">download</span>
+<span>Export Selected (3)</span>
+</button>
+<button class="h-9 px-space-md rounded-xl bg-error-container/60 hover:bg-error-container text-on-error font-headline-sm text-body-sm font-semibold flex items-center gap-1.5 transition-all shadow-[0_0_14px_rgba(147,0,10,0.4)]" id="btn-open-delete-modal" type="button">
+<span class="material-symbols-outlined text-[17px]">delete_forever</span>
+<span>Delete (3)</span>
+</button>
+<div class="h-6 w-[1px] bg-outline-variant/40 mx-space-xs hidden sm:block"></div>
+<button class="w-9 h-9 rounded-xl text-on-surface-variant hover:text-on-surface hover:bg-surface-container flex items-center justify-center transition-all" title="Clear selection" type="button">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+</div>
+</div>
+<!-- SECTION 3: COURSE MANAGEMENT DATA TABLE -->
+<div class="w-full rounded-2xl bg-surface-container-low/75 backdrop-blur-2xl shadow-[0_8px_32px_rgba(0,0,0,0.37)] overflow-hidden flex flex-col">
+<div class="overflow-x-auto w-full">
+<table class="w-full text-left border-collapse">
+<!-- Table Head -->
+<thead>
+<tr class="bg-surface-container-high/80 text-on-surface-variant font-label-code-sm text-label-code-sm uppercase tracking-wider">
+<th class="py-space-md px-space-md w-12 text-center">
+<label class="relative flex items-center justify-center cursor-pointer">
+<input checked="" class="sr-only" type="checkbox"/>
+<div class="w-4 h-4 rounded bg-primary-container text-on-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[13px] font-bold">check</span>
+</div>
+</label>
+</th>
+<th class="py-space-md px-space-md">
+<button class="flex items-center gap-1 hover:text-on-surface transition-colors font-semibold">
+<span>Course Code &amp; Name</span>
+<span class="material-symbols-outlined text-[15px] text-primary">arrow_downward</span>
+</button>
+</th>
+<th class="py-space-md px-space-md">
+<button class="flex items-center gap-1 hover:text-on-surface transition-colors font-semibold">
+<span>Credits</span>
+<span class="material-symbols-outlined text-[14px]">unfold_more</span>
+</button>
+</th>
+<th class="py-space-md px-space-md font-semibold">Faculty / Lead</th>
+<th class="py-space-md px-space-md font-semibold">Prerequisites</th>
+<th class="py-space-md px-space-md min-w-[210px]">
+<button class="flex items-center gap-1 hover:text-on-surface transition-colors font-semibold">
+<span>Enrolled / Capacity</span>
+<span class="material-symbols-outlined text-[14px]">unfold_more</span>
+</button>
+</th>
+<th class="py-space-md px-space-md font-semibold">Waitlist</th>
+<th class="py-space-md px-space-md font-semibold">Status</th>
+<th class="py-space-md px-space-md text-right font-semibold">Actions</th>
+</tr>
+</thead>
+<!-- Table Body -->
+<tbody class="divide-y divide-transparent font-body-sm text-body-sm">
+<!-- ROW 1: CS301 (Selected) -->
+<tr class="bg-surface-container/60 hover:bg-surface-container-high/70 transition-all group">
+<td class="py-space-md px-space-md text-center">
+<div class="w-4 h-4 rounded bg-primary text-on-primary mx-auto flex items-center justify-center shadow-[0_0_8px_rgba(79,219,200,0.4)]">
+<span class="material-symbols-outlined text-[13px] font-bold">check</span>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<div class="flex items-center gap-space-sm min-w-0">
+<div class="px-2 py-1 rounded bg-tertiary-container/20 text-tertiary font-label-code-sm text-label-code-sm font-semibold tracking-wider">
+                  CS301
+                </div>
+<div class="flex flex-col min-w-0">
+<span class="font-headline-sm text-body-md font-bold text-on-surface truncate group-hover:text-primary transition-colors">
+                    Data Structures &amp; Algorithms
+                  </span>
+<span class="font-label-code-sm text-label-code-sm text-on-surface-variant">Dept. of Computer Science · SEC-01</span>
+</div>
+</div>
+</td>
+<td class="py-space-md px-space-md font-label-code-md text-label-code-md font-semibold text-on-surface">
+              4 CR
+            </td>
+<td class="py-space-md px-space-md">
+<div class="flex items-center gap-2">
+<div class="w-7 h-7 rounded-full bg-gradient-to-tr from-primary-container to-tertiary flex items-center justify-center text-on-primary font-bold text-[11px]">
+                  RS
+                </div>
+<span class="text-on-surface font-medium truncate">Dr. R. Sharma</span>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-primary/10 text-primary font-label-code-sm text-label-code-sm font-semibold">
+                CS201 <span class="material-symbols-outlined text-[13px]">check</span>
+</span>
+</td>
+<td class="py-space-md px-space-md">
+<div class="flex flex-col gap-1.5 w-full">
+<div class="flex justify-between items-center font-label-code-sm text-label-code-sm">
+<span class="font-semibold text-secondary-fixed">38 / 40</span>
+<span class="text-secondary-fixed-dim">95% Full</span>
+</div>
+<div class="w-full h-2 rounded-full bg-surface-container-highest overflow-hidden">
+<div class="h-full rounded-full bg-gradient-to-r from-secondary-container to-secondary-fixed shadow-[0_0_10px_rgba(255,180,162,0.4)]" style="width: 95%;"></div>
+</div>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<span class="px-2 py-0.5 rounded-md bg-secondary-container/40 text-on-secondary-container font-label-code-sm text-label-code-sm font-bold">
+                4 waiting
+              </span>
+</td>
+<td class="py-space-md px-space-md">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary-container/20 text-primary font-label-code-sm text-label-code-sm font-semibold shadow-[0_0_12px_rgba(20,184,166,0.25)]">
+<span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+                Open
+              </span>
+</td>
+<td class="py-space-md px-space-md text-right">
+<div class="flex items-center justify-end gap-1">
+<button class="w-8 h-8 rounded-lg hover:bg-surface-container-highest text-on-surface-variant hover:text-primary transition-all flex items-center justify-center" title="Edit course" type="button">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+</button>
+<button class="w-8 h-8 rounded-lg hover:bg-surface-container-highest text-on-surface-variant hover:text-tertiary transition-all flex items-center justify-center" title="Duplicate" type="button">
+<span class="material-symbols-outlined text-[18px]">content_copy</span>
+</button>
+<button class="btn-trigger-delete w-8 h-8 rounded-lg hover:bg-error-container/40 text-on-surface-variant hover:text-error transition-all flex items-center justify-center" title="Delete" type="button">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- ROW 2: CS304 (Unchecked) -->
+<tr class="bg-surface-container-low/40 hover:bg-surface-container-high/60 transition-all group">
+<td class="py-space-md px-space-md text-center">
+<div class="w-4 h-4 rounded bg-surface-container-high mx-auto"></div>
+</td>
+<td class="py-space-md px-space-md">
+<div class="flex items-center gap-space-sm min-w-0">
+<div class="px-2 py-1 rounded bg-tertiary-container/20 text-tertiary font-label-code-sm text-label-code-sm font-semibold tracking-wider">
+                  CS304
+                </div>
+<div class="flex flex-col min-w-0">
+<span class="font-headline-sm text-body-md font-bold text-on-surface truncate group-hover:text-primary transition-colors">
+                    Database Management Systems
+                  </span>
+<span class="font-label-code-sm text-label-code-sm text-on-surface-variant">Dept. of Computer Science · SEC-02</span>
+</div>
+</div>
+</td>
+<td class="py-space-md px-space-md font-label-code-md text-label-code-md font-semibold text-on-surface">
+              4 CR
+            </td>
+<td class="py-space-md px-space-md">
+<div class="flex items-center gap-2">
+<div class="w-7 h-7 rounded-full bg-surface-container-highest text-tertiary flex items-center justify-center font-bold text-[11px]">
+                  PV
+                </div>
+<span class="text-on-surface font-medium truncate">Prof. Varma</span>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-primary/10 text-primary font-label-code-sm text-label-code-sm font-semibold">
+                CS201 <span class="material-symbols-outlined text-[13px]">check</span>
+</span>
+</td>
+<td class="py-space-md px-space-md">
+<div class="flex flex-col gap-1.5 w-full">
+<div class="flex justify-between items-center font-label-code-sm text-label-code-sm">
+<span class="font-semibold text-on-surface">29 / 40</span>
+<span class="text-primary">72.5%</span>
+</div>
+<div class="w-full h-2 rounded-full bg-surface-container-highest overflow-hidden">
+<div class="h-full rounded-full bg-primary-container shadow-[0_0_8px_rgba(20,184,166,0.3)]" style="width: 72.5%;"></div>
+</div>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<span class="font-label-code-sm text-label-code-sm text-on-surface-variant font-medium">0</span>
+</td>
+<td class="py-space-md px-space-md">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary-container/20 text-primary font-label-code-sm text-label-code-sm font-semibold shadow-[0_0_12px_rgba(20,184,166,0.25)]">
+<span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+                Open
+              </span>
+</td>
+<td class="py-space-md px-space-md text-right">
+<div class="flex items-center justify-end gap-1">
+<button class="w-8 h-8 rounded-lg hover:bg-surface-container-highest text-on-surface-variant hover:text-primary transition-all flex items-center justify-center" type="button">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+</button>
+<button class="w-8 h-8 rounded-lg hover:bg-surface-container-highest text-on-surface-variant hover:text-tertiary transition-all flex items-center justify-center" type="button">
+<span class="material-symbols-outlined text-[18px]">content_copy</span>
+</button>
+<button class="btn-trigger-delete w-8 h-8 rounded-lg hover:bg-error-container/40 text-on-surface-variant hover:text-error transition-all flex items-center justify-center" type="button">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- ROW 3: SE319 (Selected) -->
+<tr class="bg-surface-container/60 hover:bg-surface-container-high/70 transition-all group">
+<td class="py-space-md px-space-md text-center">
+<div class="w-4 h-4 rounded bg-primary text-on-primary mx-auto flex items-center justify-center shadow-[0_0_8px_rgba(79,219,200,0.4)]">
+<span class="material-symbols-outlined text-[13px] font-bold">check</span>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<div class="flex items-center gap-space-sm min-w-0">
+<div class="px-2 py-1 rounded bg-tertiary-container/20 text-tertiary font-label-code-sm text-label-code-sm font-semibold tracking-wider">
+                  SE319
+                </div>
+<div class="flex flex-col min-w-0">
+<span class="font-headline-sm text-body-md font-bold text-on-surface truncate group-hover:text-primary transition-colors">
+                    Software Engineering
+                  </span>
+<span class="font-label-code-sm text-label-code-sm text-on-surface-variant">Dept. of Software Eng · SEC-01</span>
+</div>
+</div>
+</td>
+<td class="py-space-md px-space-md font-label-code-md text-label-code-md font-semibold text-on-surface">
+              4 CR
+            </td>
+<td class="py-space-md px-space-md">
+<div class="flex items-center gap-2">
+<div class="w-7 h-7 rounded-full bg-surface-container-highest text-primary flex items-center justify-center font-bold text-[11px]">
+                  AM
+                </div>
+<span class="text-on-surface font-medium truncate">Dr. Al-Mansoor</span>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<div class="flex flex-wrap gap-1">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-primary/10 text-primary font-label-code-sm text-label-code-sm font-semibold">
+                  CS201 <span class="material-symbols-outlined text-[12px]">check</span>
+</span>
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-primary/10 text-primary font-label-code-sm text-label-code-sm font-semibold">
+                  SE210 <span class="material-symbols-outlined text-[12px]">check</span>
+</span>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<div class="flex flex-col gap-1.5 w-full">
+<div class="flex justify-between items-center font-label-code-sm text-label-code-sm">
+<span class="font-semibold text-on-surface">27 / 45</span>
+<span class="text-primary">60%</span>
+</div>
+<div class="w-full h-2 rounded-full bg-surface-container-highest overflow-hidden">
+<div class="h-full rounded-full bg-primary-container shadow-[0_0_8px_rgba(20,184,166,0.3)]" style="width: 60%;"></div>
+</div>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<span class="font-label-code-sm text-label-code-sm text-on-surface-variant font-medium">0</span>
+</td>
+<td class="py-space-md px-space-md">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary-container/20 text-primary font-label-code-sm text-label-code-sm font-semibold shadow-[0_0_12px_rgba(20,184,166,0.25)]">
+<span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+                Open
+              </span>
+</td>
+<td class="py-space-md px-space-md text-right">
+<div class="flex items-center justify-end gap-1">
+<button class="w-8 h-8 rounded-lg hover:bg-surface-container-highest text-on-surface-variant hover:text-primary transition-all flex items-center justify-center" type="button">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+</button>
+<button class="w-8 h-8 rounded-lg hover:bg-surface-container-highest text-on-surface-variant hover:text-tertiary transition-all flex items-center justify-center" type="button">
+<span class="material-symbols-outlined text-[18px]">content_copy</span>
+</button>
+<button class="btn-trigger-delete w-8 h-8 rounded-lg hover:bg-error-container/40 text-on-surface-variant hover:text-error transition-all flex items-center justify-center" type="button">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- ROW 4: MATH302 (Unchecked) -->
+<tr class="bg-surface-container-low/40 hover:bg-surface-container-high/60 transition-all group">
+<td class="py-space-md px-space-md text-center">
+<div class="w-4 h-4 rounded bg-surface-container-high mx-auto"></div>
+</td>
+<td class="py-space-md px-space-md">
+<div class="flex items-center gap-space-sm min-w-0">
+<div class="px-2 py-1 rounded bg-tertiary-container/20 text-tertiary font-label-code-sm text-label-code-sm font-semibold tracking-wider">
+                  MATH302
+                </div>
+<div class="flex flex-col min-w-0">
+<span class="font-headline-sm text-body-md font-bold text-on-surface truncate group-hover:text-primary transition-colors">
+                    Probability &amp; Statistics
+                  </span>
+<span class="font-label-code-sm text-label-code-sm text-on-surface-variant">Dept. of Mathematics · SEC-03</span>
+</div>
+</div>
+</td>
+<td class="py-space-md px-space-md font-label-code-md text-label-code-md font-semibold text-on-surface">
+              3 CR
+            </td>
+<td class="py-space-md px-space-md">
+<div class="flex items-center gap-2">
+<div class="w-7 h-7 rounded-full bg-surface-container-highest text-secondary flex items-center justify-center font-bold text-[11px]">
+                  EW
+                </div>
+<span class="text-on-surface font-medium truncate">Dr. Eileen Wu</span>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-primary/10 text-primary font-label-code-sm text-label-code-sm font-semibold">
+                MATH201 <span class="material-symbols-outlined text-[13px]">check</span>
+</span>
+</td>
+<td class="py-space-md px-space-md">
+<div class="flex flex-col gap-1.5 w-full">
+<div class="flex justify-between items-center font-label-code-sm text-label-code-sm">
+<span class="font-semibold text-on-surface">31 / 35</span>
+<span class="text-secondary-fixed">88.5%</span>
+</div>
+<div class="w-full h-2 rounded-full bg-surface-container-highest overflow-hidden">
+<div class="h-full rounded-full bg-secondary-fixed-dim" style="width: 88.5%;"></div>
+</div>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<span class="px-2 py-0.5 rounded-md bg-secondary-container/30 text-on-secondary-container font-label-code-sm text-label-code-sm font-semibold">
+                2 waiting
+              </span>
+</td>
+<td class="py-space-md px-space-md">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary-container/20 text-primary font-label-code-sm text-label-code-sm font-semibold shadow-[0_0_12px_rgba(20,184,166,0.25)]">
+<span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+                Open
+              </span>
+</td>
+<td class="py-space-md px-space-md text-right">
+<div class="flex items-center justify-end gap-1">
+<button class="w-8 h-8 rounded-lg hover:bg-surface-container-highest text-on-surface-variant hover:text-primary transition-all flex items-center justify-center" type="button">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+</button>
+<button class="w-8 h-8 rounded-lg hover:bg-surface-container-highest text-on-surface-variant hover:text-tertiary transition-all flex items-center justify-center" type="button">
+<span class="material-symbols-outlined text-[18px]">content_copy</span>
+</button>
+<button class="btn-trigger-delete w-8 h-8 rounded-lg hover:bg-error-container/40 text-on-surface-variant hover:text-error transition-all flex items-center justify-center" type="button">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- ROW 5: CS305 (Selected) -->
+<tr class="bg-surface-container/60 hover:bg-surface-container-high/70 transition-all group">
+<td class="py-space-md px-space-md text-center">
+<div class="w-4 h-4 rounded bg-primary text-on-primary mx-auto flex items-center justify-center shadow-[0_0_8px_rgba(79,219,200,0.4)]">
+<span class="material-symbols-outlined text-[13px] font-bold">check</span>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<div class="flex items-center gap-space-sm min-w-0">
+<div class="px-2 py-1 rounded bg-tertiary-container/20 text-tertiary font-label-code-sm text-label-code-sm font-semibold tracking-wider">
+                  CS305
+                </div>
+<div class="flex flex-col min-w-0">
+<span class="font-headline-sm text-body-md font-bold text-on-surface truncate group-hover:text-primary transition-colors">
+                    Operating Systems
+                  </span>
+<span class="font-label-code-sm text-label-code-sm text-on-surface-variant">Dept. of Computer Science · SEC-01</span>
+</div>
+</div>
+</td>
+<td class="py-space-md px-space-md font-label-code-md text-label-code-md font-semibold text-on-surface">
+              4 CR
+            </td>
+<td class="py-space-md px-space-md">
+<div class="flex items-center gap-2">
+<div class="w-7 h-7 rounded-full bg-surface-container-highest text-primary flex items-center justify-center font-bold text-[11px]">
+                  DM
+                </div>
+<span class="text-on-surface font-medium truncate">Dr. Mehta</span>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-primary/10 text-primary font-label-code-sm text-label-code-sm font-semibold">
+                CS301 <span class="material-symbols-outlined text-[13px]">check</span>
+</span>
+</td>
+<td class="py-space-md px-space-md">
+<div class="flex flex-col gap-1.5 w-full">
+<div class="flex justify-between items-center font-label-code-sm text-label-code-sm">
+<span class="font-semibold text-secondary">40 / 40</span>
+<span class="text-secondary font-bold">100% Full</span>
+</div>
+<div class="w-full h-2 rounded-full bg-surface-container-highest overflow-hidden">
+<div class="h-full rounded-full bg-secondary-container shadow-[0_0_12px_rgba(255,122,89,0.5)]" style="width: 100%;"></div>
+</div>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<span class="px-2.5 py-0.5 rounded-md bg-secondary-container text-on-secondary-container font-label-code-sm text-label-code-sm font-bold shadow-[0_0_10px_rgba(134,34,8,0.3)]">
+                12 waiting
+              </span>
+</td>
+<td class="py-space-md px-space-md">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary-container/50 text-on-secondary-container font-label-code-sm text-label-code-sm font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+                Full
+              </span>
+</td>
+<td class="py-space-md px-space-md text-right">
+<div class="flex items-center justify-end gap-1">
+<button class="w-8 h-8 rounded-lg hover:bg-surface-container-highest text-on-surface-variant hover:text-primary transition-all flex items-center justify-center" type="button">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+</button>
+<button class="w-8 h-8 rounded-lg hover:bg-surface-container-highest text-on-surface-variant hover:text-tertiary transition-all flex items-center justify-center" type="button">
+<span class="material-symbols-outlined text-[18px]">content_copy</span>
+</button>
+<button class="btn-trigger-delete w-8 h-8 rounded-lg hover:bg-error-container/40 text-on-surface-variant hover:text-error transition-all flex items-center justify-center" type="button">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- ROW 6: MA201 (Unchecked) -->
+<tr class="bg-surface-container-low/40 hover:bg-surface-container-high/60 transition-all group">
+<td class="py-space-md px-space-md text-center">
+<div class="w-4 h-4 rounded bg-surface-container-high mx-auto"></div>
+</td>
+<td class="py-space-md px-space-md">
+<div class="flex items-center gap-space-sm min-w-0">
+<div class="px-2 py-1 rounded bg-tertiary-container/20 text-tertiary font-label-code-sm text-label-code-sm font-semibold tracking-wider">
+                  MA201
+                </div>
+<div class="flex flex-col min-w-0">
+<span class="font-headline-sm text-body-md font-bold text-on-surface truncate group-hover:text-primary transition-colors">
+                    Linear Algebra
+                  </span>
+<span class="font-label-code-sm text-label-code-sm text-on-surface-variant">Dept. of Mathematics · SEC-02</span>
+</div>
+</div>
+</td>
+<td class="py-space-md px-space-md font-label-code-md text-label-code-md font-semibold text-on-surface">
+              4 CR
+            </td>
+<td class="py-space-md px-space-md">
+<div class="flex items-center gap-2">
+<div class="w-7 h-7 rounded-full bg-surface-container-highest text-tertiary flex items-center justify-center font-bold text-[11px]">
+                  DN
+                </div>
+<span class="text-on-surface font-medium truncate">Dr. Nair</span>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-primary/10 text-primary font-label-code-sm text-label-code-sm font-semibold">
+                MATH101 <span class="material-symbols-outlined text-[13px]">check</span>
+</span>
+</td>
+<td class="py-space-md px-space-md">
+<div class="flex flex-col gap-1.5 w-full">
+<div class="flex justify-between items-center font-label-code-sm text-label-code-sm">
+<span class="font-semibold text-secondary">40 / 40</span>
+<span class="text-secondary font-bold">100% Full</span>
+</div>
+<div class="w-full h-2 rounded-full bg-surface-container-highest overflow-hidden">
+<div class="h-full rounded-full bg-secondary-container shadow-[0_0_12px_rgba(255,122,89,0.5)]" style="width: 100%;"></div>
+</div>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<span class="px-2.5 py-0.5 rounded-md bg-secondary-container text-on-secondary-container font-label-code-sm text-label-code-sm font-bold shadow-[0_0_10px_rgba(134,34,8,0.3)]">
+                18 waiting
+              </span>
+</td>
+<td class="py-space-md px-space-md">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary-container/50 text-on-secondary-container font-label-code-sm text-label-code-sm font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+                Full
+              </span>
+</td>
+<td class="py-space-md px-space-md text-right">
+<div class="flex items-center justify-end gap-1">
+<button class="w-8 h-8 rounded-lg hover:bg-surface-container-highest text-on-surface-variant hover:text-primary transition-all flex items-center justify-center" type="button">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+</button>
+<button class="w-8 h-8 rounded-lg hover:bg-surface-container-highest text-on-surface-variant hover:text-tertiary transition-all flex items-center justify-center" type="button">
+<span class="material-symbols-outlined text-[18px]">content_copy</span>
+</button>
+<button class="btn-trigger-delete w-8 h-8 rounded-lg hover:bg-error-container/40 text-on-surface-variant hover:text-error transition-all flex items-center justify-center" type="button">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- ROW 7: SE410 (Unchecked - Closed) -->
+<tr class="bg-surface-container-low/40 hover:bg-surface-container-high/60 transition-all group">
+<td class="py-space-md px-space-md text-center">
+<div class="w-4 h-4 rounded bg-surface-container-high mx-auto"></div>
+</td>
+<td class="py-space-md px-space-md">
+<div class="flex items-center gap-space-sm min-w-0">
+<div class="px-2 py-1 rounded bg-tertiary-container/20 text-tertiary font-label-code-sm text-label-code-sm font-semibold tracking-wider">
+                  SE410
+                </div>
+<div class="flex flex-col min-w-0">
+<span class="font-headline-sm text-body-md font-bold text-on-surface truncate group-hover:text-primary transition-colors">
+                    Advanced Software Architecture
+                  </span>
+<span class="font-label-code-sm text-label-code-sm text-on-surface-variant">Dept. of Software Eng · SEC-04</span>
+</div>
+</div>
+</td>
+<td class="py-space-md px-space-md font-label-code-md text-label-code-md font-semibold text-on-surface">
+              4 CR
+            </td>
+<td class="py-space-md px-space-md">
+<div class="flex items-center gap-2">
+<div class="w-7 h-7 rounded-full bg-surface-container-highest text-primary-fixed flex items-center justify-center font-bold text-[11px]">
+                  AV
+                </div>
+<span class="text-on-surface font-medium truncate">Dr. Alan Vance</span>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-primary/10 text-primary font-label-code-sm text-label-code-sm font-semibold">
+                SE319 <span class="material-symbols-outlined text-[13px]">check</span>
+</span>
+</td>
+<td class="py-space-md px-space-md">
+<div class="flex flex-col gap-1.5 w-full">
+<div class="flex justify-between items-center font-label-code-sm text-label-code-sm">
+<span class="font-semibold text-on-surface-variant">6 / 30</span>
+<span class="text-tertiary">20%</span>
+</div>
+<div class="w-full h-2 rounded-full bg-surface-container-highest overflow-hidden">
+<div class="h-full rounded-full bg-tertiary" style="width: 20%;"></div>
+</div>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<span class="font-label-code-sm text-label-code-sm text-on-surface-variant font-medium">0</span>
+</td>
+<td class="py-space-md px-space-md">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container-highest text-on-surface-variant font-label-code-sm text-label-code-sm font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-outline"></span>
+                Closed
+              </span>
+</td>
+<td class="py-space-md px-space-md text-right">
+<div class="flex items-center justify-end gap-1">
+<button class="w-8 h-8 rounded-lg hover:bg-surface-container-highest text-on-surface-variant hover:text-primary transition-all flex items-center justify-center" type="button">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+</button>
+<button class="w-8 h-8 rounded-lg hover:bg-surface-container-highest text-on-surface-variant hover:text-tertiary transition-all flex items-center justify-center" type="button">
+<span class="material-symbols-outlined text-[18px]">content_copy</span>
+</button>
+<button class="btn-trigger-delete w-8 h-8 rounded-lg hover:bg-error-container/40 text-on-surface-variant hover:text-error transition-all flex items-center justify-center" type="button">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination & Catalog Summary Footer -->
+<div class="px-space-lg py-space-md bg-surface-container-high/60 backdrop-blur-md flex flex-wrap items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-sm font-label-code-sm text-label-code-sm text-on-surface-variant">
+<span>Showing <strong class="text-on-surface font-semibold">7</strong> of <strong class="text-on-surface font-semibold">148</strong> courses</span>
+<span class="text-outline-variant">·</span>
+<span>Catalog: Fall 2026 Regular Session</span>
+</div>
+<div class="flex items-center gap-space-sm">
+<span class="font-label-code-sm text-label-code-sm text-on-surface-variant mr-2">Page 1 of 22</span>
+<button class="w-8 h-8 rounded-lg bg-surface-container text-outline flex items-center justify-center opacity-50 cursor-not-allowed" disabled="" type="button">
+<span class="material-symbols-outlined text-[18px]">chevron_left</span>
+</button>
+<button class="w-8 h-8 rounded-lg bg-primary-container text-on-primary font-label-code-sm text-label-code-sm font-bold flex items-center justify-center shadow-[0_0_10px_rgba(20,184,166,0.3)]" type="button">
+          1
+        </button>
+<button class="w-8 h-8 rounded-lg bg-surface-container hover:bg-surface-container-highest text-on-surface font-label-code-sm text-label-code-sm font-semibold flex items-center justify-center transition-colors" type="button">
+          2
+        </button>
+<button class="w-8 h-8 rounded-lg bg-surface-container hover:bg-surface-container-highest text-on-surface font-label-code-sm text-label-code-sm font-semibold flex items-center justify-center transition-colors" type="button">
+          3
+        </button>
+<span class="text-on-surface-variant font-label-code-sm">...</span>
+<button class="w-8 h-8 rounded-lg bg-surface-container hover:bg-surface-container-highest text-on-surface font-label-code-sm text-label-code-sm font-semibold flex items-center justify-center transition-colors" type="button">
+          22
+        </button>
+<button class="w-8 h-8 rounded-lg bg-surface-container hover:bg-surface-container-highest text-on-surface flex items-center justify-center transition-colors" type="button">
+<span class="material-symbols-outlined text-[18px]">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- SECTION 4: RIGHT-SIDE SLIDE-OVER DRAWER ("Add New Course") -->
+<div class="fixed inset-y-0 right-0 z-50 w-full max-w-[490px] bg-surface-container-low/95 backdrop-blur-3xl shadow-[0_0_70px_rgba(0,0,0,0.8)] transform translate-x-full transition-transform duration-300 ease-in-out flex flex-col" id="add-course-drawer">
+<!-- Drawer Header -->
+<div class="p-space-lg bg-surface-container-high/80 backdrop-blur-md flex items-start justify-between gap-space-md">
+<div>
+<div class="flex items-center gap-space-xs font-label-code-sm text-label-code-sm text-primary uppercase font-bold tracking-widest">
+<span>CURRICULUM PROVISIONING</span>
+</div>
+<h2 class="font-headline-md text-headline-md font-bold text-on-surface mt-0.5">Add New Course</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Create and schedule a new curriculum offering for Fall 2026.</p>
+</div>
+<button class="w-9 h-9 rounded-xl bg-surface-container hover:bg-surface-container-highest text-on-surface flex items-center justify-center transition-all" id="btn-close-drawer" type="button">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<!-- Drawer Body / Scrollable Form -->
+<div class="flex-1 overflow-y-auto p-space-lg flex flex-col gap-space-md">
+<!-- Circular Prerequisite Validation Alert (Visible Spec) -->
+<div class="p-space-md rounded-xl bg-error-container/30 text-on-error-container flex items-start gap-space-sm shadow-[0_4px_20px_rgba(147,0,10,0.25)]">
+<span class="material-symbols-outlined text-error text-[22px] flex-shrink-0 mt-0.5">warning</span>
+<div class="flex flex-col text-body-sm">
+<span class="font-bold text-error leading-tight">Circular Prerequisite Detected</span>
+<p class="text-on-surface text-[12px] leading-relaxed mt-1">
+<strong>CS410</strong> cannot declare <strong>CS420</strong> as a prerequisite because <strong>CS420</strong> already depends directly on <strong>CS410</strong>. Resolve this recursion to proceed.
+          </p>
+</div>
+</div>
+<!-- Course Identifiers (Grid) -->
+<div class="grid grid-cols-3 gap-space-sm">
+<div class="col-span-1 flex flex-col gap-1">
+<label class="font-label-code-sm text-label-code-sm font-semibold uppercase text-on-surface-variant">Code *</label>
+<input class="h-11 px-space-md rounded-xl bg-surface-container-lowest/90 text-primary font-label-code-md text-label-code-md font-bold uppercase focus:outline-none focus:ring-2 focus:ring-primary/40" type="text" value="CS410"/>
+</div>
+<div class="col-span-2 flex flex-col gap-1">
+<label class="font-label-code-sm text-label-code-sm font-semibold uppercase text-on-surface-variant">Course Title *</label>
+<input class="h-11 px-space-md rounded-xl bg-surface-container-lowest/90 text-on-surface text-body-sm font-headline-sm font-semibold focus:outline-none focus:ring-2 focus:ring-primary/40" type="text" value="Advanced Distributed Systems"/>
+</div>
+</div>
+<!-- Department & Credits -->
+<div class="grid grid-cols-3 gap-space-sm">
+<div class="col-span-2 flex flex-col gap-1">
+<label class="font-label-code-sm text-label-code-sm font-semibold uppercase text-on-surface-variant">Department</label>
+<div class="relative">
+<select class="w-full h-11 px-space-md rounded-xl bg-surface-container-lowest/90 text-on-surface text-body-sm font-body-sm appearance-none focus:outline-none focus:ring-2 focus:ring-primary/40">
+<option>Computer Science &amp; Engineering</option>
+<option>Software Engineering</option>
+<option>Mathematics &amp; Statistics</option>
+<option>Electrical Engineering</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-[18px] text-outline pointer-events-none">expand_more</span>
+</div>
+</div>
+<div class="col-span-1 flex flex-col gap-1">
+<label class="font-label-code-sm text-label-code-sm font-semibold uppercase text-on-surface-variant">Credits</label>
+<div class="relative">
+<select class="w-full h-11 px-space-md rounded-xl bg-surface-container-lowest/90 text-on-surface text-body-sm font-label-code-md font-semibold appearance-none focus:outline-none focus:ring-2 focus:ring-primary/40">
+<option>1 CR</option>
+<option>2 CR</option>
+<option>3 CR</option>
+<option selected="">4 CR</option>
+<option>5 CR</option>
+<option>6 CR</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-[18px] text-outline pointer-events-none">expand_more</span>
+</div>
+</div>
+</div>
+<!-- Faculty Searchable & Semester -->
+<div class="flex flex-col gap-1">
+<label class="font-label-code-sm text-label-code-sm font-semibold uppercase text-on-surface-variant">Assigned Faculty / Instructor</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-[18px] text-primary">person</span>
+<input class="w-full h-11 pl-10 pr-space-md rounded-xl bg-surface-container-lowest/90 text-on-surface text-body-sm font-body-sm focus:outline-none focus:ring-2 focus:ring-primary/40" type="text" value="Dr. Alan Vance · Turing Hall 408"/>
+</div>
+</div>
+<!-- Description -->
+<div class="flex flex-col gap-1">
+<label class="font-label-code-sm text-label-code-sm font-semibold uppercase text-on-surface-variant">Course Description</label>
+<textarea class="w-full p-space-md rounded-xl bg-surface-container-lowest/90 text-on-surface text-body-sm font-body-sm focus:outline-none focus:ring-2 focus:ring-primary/40" rows="3">An advanced investigation into consensus protocols (Raft, Paxos), distributed storage engines, fault tolerance architectures, and decentralized coordination primitives.</textarea>
+</div>
+<!-- Capacity & Room Allocation -->
+<div class="grid grid-cols-2 gap-space-sm">
+<div class="flex flex-col gap-1">
+<label class="font-label-code-sm text-label-code-sm font-semibold uppercase text-on-surface-variant">Seat Capacity</label>
+<input class="h-11 px-space-md rounded-xl bg-surface-container-lowest/90 text-on-surface text-body-sm font-label-code-md font-bold focus:outline-none focus:ring-2 focus:ring-primary/40" type="number" value="35"/>
+</div>
+<div class="flex flex-col gap-1">
+<label class="font-label-code-sm text-label-code-sm font-semibold uppercase text-on-surface-variant">Assigned Room</label>
+<input class="h-11 px-space-md rounded-xl bg-surface-container-lowest/90 text-on-surface text-body-sm font-body-sm focus:outline-none focus:ring-2 focus:ring-primary/40" type="text" value="Ada Lab 4 · Cybernetics Wing"/>
+</div>
+</div>
+<!-- Schedule Inputs: Days & Time Slot -->
+<div class="flex flex-col gap-2">
+<label class="font-label-code-sm text-label-code-sm font-semibold uppercase text-on-surface-variant">Weekly Timetable Schedule</label>
+<!-- Day selectors -->
+<div class="grid grid-cols-5 gap-1.5">
+<button class="h-9 rounded-lg bg-primary-container text-on-primary font-label-code-sm text-label-code-sm font-bold shadow-[0_0_8px_rgba(20,184,166,0.3)]" type="button">MON</button>
+<button class="h-9 rounded-lg bg-surface-container text-on-surface-variant hover:bg-surface-container-high font-label-code-sm text-label-code-sm font-medium" type="button">TUE</button>
+<button class="h-9 rounded-lg bg-primary-container text-on-primary font-label-code-sm text-label-code-sm font-bold shadow-[0_0_8px_rgba(20,184,166,0.3)]" type="button">WED</button>
+<button class="h-9 rounded-lg bg-surface-container text-on-surface-variant hover:bg-surface-container-high font-label-code-sm text-label-code-sm font-medium" type="button">THU</button>
+<button class="h-9 rounded-lg bg-primary-container text-on-primary font-label-code-sm text-label-code-sm font-bold shadow-[0_0_8px_rgba(20,184,166,0.3)]" type="button">FRI</button>
+</div>
+<!-- Time Window -->
+<div class="grid grid-cols-2 gap-space-sm mt-1">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-[16px] text-outline">schedule</span>
+<input class="w-full h-10 pl-9 pr-3 rounded-lg bg-surface-container-lowest/90 text-on-surface font-label-code-sm text-label-code-sm focus:outline-none" type="text" value="10:00 AM"/>
+</div>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-[16px] text-outline">schedule</span>
+<input class="w-full h-10 pl-9 pr-3 rounded-lg bg-surface-container-lowest/90 text-on-surface font-label-code-sm text-label-code-sm focus:outline-none" type="text" value="11:30 AM"/>
+</div>
+</div>
+</div>
+<!-- Prerequisites Multi-select -->
+<div class="flex flex-col gap-1.5">
+<div class="flex items-center justify-between">
+<label class="font-label-code-sm text-label-code-sm font-semibold uppercase text-on-surface-variant">Prerequisite Dependencies</label>
+<button class="text-primary hover:underline font-label-code-sm text-[11px]" type="button">+ Add Prereq</button>
+</div>
+<div class="p-space-sm rounded-xl bg-surface-container-lowest/90 min-h-[44px] flex flex-wrap items-center gap-1.5">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-primary-container/20 text-primary font-label-code-sm text-label-code-sm font-semibold">
+            CS301 (Data Struct.)
+            <span class="material-symbols-outlined text-[13px] hover:text-error cursor-pointer">cancel</span>
+</span>
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-primary-container/20 text-primary font-label-code-sm text-label-code-sm font-semibold">
+            SE319 (Software Eng.)
+            <span class="material-symbols-outlined text-[13px] hover:text-error cursor-pointer">cancel</span>
+</span>
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-error-container/40 text-on-error font-label-code-sm text-label-code-sm font-bold">
+            CS420 (Circular ⚠)
+            <span class="material-symbols-outlined text-[13px] hover:text-white cursor-pointer">cancel</span>
+</span>
+</div>
+</div>
+<!-- Enrolment Status Toggle -->
+<div class="p-space-md rounded-xl bg-surface-container-high/50 flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-headline-sm text-body-sm font-bold text-on-surface">Registration Status</span>
+<span class="font-body-sm text-label-code-sm text-on-surface-variant">Allow student enrolments upon creation</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="font-label-code-sm text-label-code-sm text-primary font-bold">OPEN</span>
+<button class="w-12 h-6 rounded-full bg-primary-container p-0.5 flex items-center transition-all shadow-[0_0_10px_rgba(20,184,166,0.4)]" type="button">
+<div class="w-5 h-5 rounded-full bg-on-primary ml-auto shadow-md"></div>
+</button>
+</div>
+</div>
+</div>
+<!-- Drawer Footer Actions -->
+<div class="p-space-lg bg-surface-container-high/90 backdrop-blur-md flex items-center justify-end gap-space-sm">
+<button class="h-11 px-space-lg rounded-xl bg-surface-container hover:bg-surface-container-highest text-on-surface font-headline-sm text-body-sm font-semibold transition-all" id="btn-cancel-drawer" type="button">
+        Cancel
+      </button>
+<button class="h-11 px-space-xl rounded-xl bg-gradient-to-r from-primary-container to-primary text-on-primary font-headline-sm text-body-sm font-bold shadow-[0_0_20px_rgba(20,184,166,0.35)] hover:shadow-[0_0_30px_rgba(20,184,166,0.6)] transition-all" type="button">
+        Save Course
+      </button>
+</div>
+</div>
+<!-- SECTION 5: CENTER CONFIRMATION MODAL ("Delete Confirmation") -->
+<div class="fixed inset-0 z-50 flex items-center justify-center p-space-md bg-surface-dim/80 backdrop-blur-xl opacity-0 pointer-events-none transition-opacity duration-300" id="delete-confirmation-modal">
+<div class="w-full max-w-md rounded-2xl bg-surface-container-high/95 p-space-xl backdrop-blur-2xl shadow-[0_24px_64px_rgba(0,0,0,0.85)] flex flex-col gap-space-md transform scale-95 transition-transform duration-300">
+<!-- Warning Header Pip -->
+<div class="flex items-center gap-space-md">
+<div class="w-12 h-12 rounded-2xl bg-error-container/40 text-error flex items-center justify-center shadow-[0_0_24px_rgba(255,122,89,0.35)] flex-shrink-0">
+<span class="material-symbols-outlined text-[28px]">warning</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-code-sm text-label-code-sm text-error uppercase font-bold tracking-wider">Destructive Action</span>
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface leading-tight">Delete this course?</h3>
+</div>
+</div>
+<!-- Warning Body -->
+<div class="p-space-md rounded-xl bg-surface-container-lowest/70 text-body-sm text-on-surface-variant flex flex-col gap-2">
+<p class="text-on-surface font-medium">
+<strong class="text-secondary font-headline-sm text-body-md font-bold">CS305 · Operating Systems</strong> currently has <span class="text-primary font-semibold">40 enrolled students</span> and <span class="text-secondary-fixed font-semibold">12 students</span> on the waitlist.
+        </p>
+<p class="text-[12px] text-on-surface-variant/90 leading-relaxed">
+          Deleting this offering cannot be undone. All active enrollments will be permanently purged and prerequisites will be invalidated university-wide.
+        </p>
+</div>
+<!-- Action Footer -->
+<div class="flex items-center justify-end gap-space-sm pt-space-xs">
+<button class="h-10 px-space-lg rounded-xl bg-surface-container hover:bg-surface-container-highest text-on-surface font-headline-sm text-body-sm font-semibold transition-all" id="btn-close-modal" type="button">
+          Cancel
+        </button>
+<button class="h-10 px-space-lg rounded-xl bg-error-container text-on-error hover:bg-opacity-90 font-headline-sm text-body-sm font-bold flex items-center gap-1.5 shadow-[0_0_20px_rgba(147,0,10,0.5)] transition-all" id="btn-confirm-delete" type="button">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+<span>Delete Course</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Client-side Interactive Drawer & Modal Controller -->
+<script>
+    (function initCourseAdminControllers() {
+      // Drawer elements
+      const btnOpenDrawer = document.getElementById('btn-open-add-drawer');
+      const btnCloseDrawer = document.getElementById('btn-close-drawer');
+      const btnCancelDrawer = document.getElementById('btn-cancel-drawer');
+      const addDrawer = document.getElementById('add-course-drawer');
+
+      // Modal elements
+      const deleteModal = document.getElementById('delete-confirmation-modal');
+      const btnCloseModal = document.getElementById('btn-close-modal');
+      const btnConfirmDelete = document.getElementById('btn-confirm-delete');
+      const deleteTriggers = document.querySelectorAll('.btn-trigger-delete, #btn-open-delete-modal');
+
+      function openDrawer() {
+        if (addDrawer) {
+          addDrawer.classList.remove('translate-x-full');
+          addDrawer.classList.add('translate-x-0');
+        }
+      }
+
+      function closeDrawer() {
+        if (addDrawer) {
+          addDrawer.classList.remove('translate-x-0');
+          addDrawer.classList.add('translate-x-full');
+        }
+      }
+
+      function openModal() {
+        if (deleteModal) {
+          deleteModal.classList.remove('opacity-0', 'pointer-events-none');
+          deleteModal.classList.add('opacity-100', 'pointer-events-auto');
+          const inner = deleteModal.querySelector('div');
+          if (inner) {
+            inner.classList.remove('scale-95');
+            inner.classList.add('scale-100');
+          }
+        }
+      }
+
+      function closeModal() {
+        if (deleteModal) {
+          deleteModal.classList.remove('opacity-100', 'pointer-events-auto');
+          deleteModal.classList.add('opacity-0', 'pointer-events-none');
+          const inner = deleteModal.querySelector('div');
+          if (inner) {
+            inner.classList.remove('scale-100');
+            inner.classList.add('scale-95');
+          }
+        }
+      }
+
+      if (btnOpenDrawer) btnOpenDrawer.addEventListener('click', openDrawer);
+      if (btnCloseDrawer) btnCloseDrawer.addEventListener('click', closeDrawer);
+      if (btnCancelDrawer) btnCancelDrawer.addEventListener('click', closeDrawer);
+
+      deleteTriggers.forEach(function(btn) {
+        btn.addEventListener('click', openModal);
+      });
+
+      if (btnCloseModal) btnCloseModal.addEventListener('click', closeModal);
+      if (btnConfirmDelete) {
+        btnConfirmDelete.addEventListener('click', function() {
+          closeModal();
+        });
+      }
+
+      // Backdrop close for modal
+      if (deleteModal) {
+        deleteModal.addEventListener('click', function(e) {
+          if (e.target === deleteModal) {
+            closeModal();
+          }
+        });
+      }
+    })();
+  </script>
+</div></main></div></body></html>

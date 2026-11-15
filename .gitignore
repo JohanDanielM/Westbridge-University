@@ -1,0 +1,19 @@
+# secrets
+.env
+backend/.env
+.env.*
+!.env.example
+
+# python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# node
+node_modules/
+dist/
+
+# misc
+.DS_Store
+westbridge-logo-original.png

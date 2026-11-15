@@ -1,0 +1,375 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+   WESTBRIDGE DESIGN SYSTEM
+   Tokens, base, background, components, motion
+   ============================================================ */
+
+/* ---------- 1. Tokens ---------- */
+:root {
+  --bg-main: #071426;
+  --bg-secondary: #0A192B;
+  --surface: #0D1B2E;
+  --surface-elevated: #12243A;
+  --border: #1E344D;
+  --accent: #14B8A6;
+  --accent-text: #2DD4BF;
+  --accent-2: #38BDF8;
+  --text-1: #F1F5F9;
+  --text-2: #94A3B8;
+  --text-3: #64748B;
+  --danger: #FB7185;
+  --warning: #FBBF24;
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-fast: 180ms;
+  --dur: 260ms;
+  --dur-slow: 350ms;
+
+  --radius-card: 16px;
+  --radius-control: 12px;
+
+  --spot-x: 50%;
+  --spot-y: 30%;
+}
+
+/* ---------- 2. Base ---------- */
+@layer base {
+  html {
+    color-scheme: dark;
+    background: #071426;
+    scroll-behavior: smooth;
+    scrollbar-gutter: stable;
+  }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: transparent;
+    color: var(--text-1);
+    font-family: 'Manrope', 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    overscroll-behavior: none;
+  }
+  main > :first-child { margin-top: 0 !important; }
+  main > :last-child { margin-bottom: 0 !important; }
+  h1, h2, h3 { letter-spacing: -0.02em; }
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+    border-radius: 6px;
+  }
+}
+
+/* ---------- 3. Global background ---------- */
+.app-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  background: #071426;
+}
+.app-bg__blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(120px);
+}
+.app-bg__blob--teal {
+  width: 620px; height: 620px;
+  top: -220px; right: -160px;
+  background: #14B8A6;
+  opacity: 0.12;
+}
+.app-bg__blob--blue {
+  width: 560px; height: 560px;
+  bottom: -240px; left: -180px;
+  background: #38BDF8;
+  opacity: 0.09;
+}
+.app-bg__dots {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(148, 163, 184, 0.28) 1.25px, transparent 1.25px);
+  background-size: 28px 28px;
+  -webkit-mask-image: radial-gradient(ellipse 95% 90% at 50% 45%, #000 70%, transparent 100%);
+          mask-image: radial-gradient(ellipse 95% 90% at 50% 45%, #000 70%, transparent 100%);
+}
+.app-bg__grain {
+  position: absolute;
+  inset: 0;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.app-bg__spot {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(550px circle at var(--spot-x, 50%) var(--spot-y, 40%), rgba(20,184,166,0.14), transparent 65%);
+}
+
+/* Legacy class used by existing pages: keep it working */
+.bg-grid-pattern {
+  background-image: radial-gradient(rgba(148,163,184,0.12) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+/* ---------- 4. Scrollbars ---------- */
+* { scrollbar-width: thin; scrollbar-color: rgba(45,212,191,0.28) transparent; }
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(45,212,191,0.25); border-radius: 99px; border: 2px solid var(--bg-main); }
+::-webkit-scrollbar-thumb:hover { background: rgba(45,212,191,0.5); }
+
+/* ---------- 5. Cards ---------- */
+.premium-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+  box-shadow: 0 1px 0 rgba(255,255,255,0.03) inset, 0 16px 40px -18px rgba(2,8,20,0.7);
+  position: relative;
+}
+.premium-card--interactive,
+.card-lift {
+  transition: transform var(--dur) var(--ease-out), border-color var(--dur), box-shadow var(--dur);
+}
+.premium-card--interactive:hover,
+.card-lift:hover {
+  transform: translateY(-2px);
+  border-color: rgba(20,184,166,0.35);
+  box-shadow: 0 20px 44px -22px rgba(2,8,20,0.9);
+}
+
+/* ---------- 6. Buttons ---------- */
+.btn-primary-neo {
+  background: linear-gradient(135deg, #14B8A6, #0D9488);
+  color: #04211D;
+  font-weight: 700;
+  border-radius: var(--radius-control);
+  box-shadow: 0 8px 20px -8px rgba(20,184,166,0.5);
+  transition: all var(--dur) var(--ease-out);
+}
+.btn-primary-neo:hover:not(:disabled) {
+  filter: brightness(1.08);
+  transform: translateY(-1px);
+  box-shadow: 0 12px 28px -10px rgba(20,184,166,0.65);
+}
+.btn-secondary-neo {
+  background: var(--surface-elevated);
+  border: 1px solid var(--border);
+  color: var(--text-1);
+  font-weight: 600;
+  border-radius: var(--radius-control);
+  transition: all var(--dur) var(--ease-out);
+}
+.btn-secondary-neo:hover:not(:disabled) {
+  background: rgba(30,52,77,0.5);
+  border-color: rgba(20,184,166,0.3);
+  color: var(--accent-text);
+}
+button, a[role="button"] {
+  transition: transform var(--dur-fast) var(--ease-out), background-color var(--dur),
+              border-color var(--dur), color var(--dur), box-shadow var(--dur), opacity var(--dur), filter var(--dur);
+}
+button:not(:disabled):active { transform: scale(0.98); }
+button[class*="bg-gradient-to-r"]:not(:disabled):hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 26px -10px rgba(20,184,166,0.55);
+  filter: brightness(1.06);
+}
+button:disabled { cursor: not-allowed; opacity: 0.55; }
+
+/* ---------- 7. Inputs ---------- */
+.input-neo {
+  background: var(--bg-main);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-control);
+  color: var(--text-1);
+  padding: 0.625rem 0.875rem;
+  font-size: 0.875rem;
+  transition: border-color var(--dur), box-shadow var(--dur), background-color var(--dur);
+}
+.input-neo:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(20,184,166,0.18);
+}
+input:not([type="checkbox"]):not([type="radio"]):not([type="range"]),
+select, textarea {
+  transition: border-color var(--dur), box-shadow var(--dur), background-color var(--dur);
+}
+input:not([type="checkbox"]):not([type="radio"]):focus,
+select:focus, textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(20,184,166,0.18);
+}
+input::placeholder, textarea::placeholder { color: var(--text-3); }
+
+/* ---------- 8. Tables ---------- */
+table { border-collapse: collapse; }
+th {
+  color: var(--text-3);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+td, th { border-bottom: 1px solid rgba(30,52,77,0.7); }
+tbody tr { transition: background-color var(--dur-fast); }
+tbody tr:hover td { background: rgba(148,163,184,0.04); }
+
+/* ---------- 9. Navigation ---------- */
+aside { transition: width var(--dur-slow) var(--ease-out); }
+aside a {
+  position: relative;
+  transition: background-color var(--dur), color var(--dur), padding-left var(--dur) var(--ease-out);
+}
+aside a:hover:not([aria-current="page"]) { padding-left: 16px; }
+aside a[aria-current="page"],
+aside a.active {
+  color: var(--accent-text);
+  font-weight: 600;
+}
+aside a[aria-current="page"]::before,
+aside a.active::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 50%;
+  width: 3px; height: 60%;
+  transform: translateY(-50%);
+  border-radius: 0 3px 3px 0;
+  background: var(--accent);
+  animation: indicatorIn var(--dur-slow) var(--ease-out) both;
+}
+aside.is-collapsed { width: 76px; }
+
+/* ---------- 10. Badges ---------- */
+.badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 3px 10px; border-radius: 999px;
+  font-size: 12px; font-weight: 600; line-height: 1.4;
+  border: 1px solid transparent;
+}
+.badge-teal    { background: rgba(20,184,166,0.12);  color: var(--accent-text); border-color: rgba(20,184,166,0.25); }
+.badge-info    { background: rgba(56,189,248,0.12);  color: var(--accent-2);    border-color: rgba(56,189,248,0.25); }
+.badge-warn    { background: rgba(251,191,36,0.12);  color: var(--warning);     border-color: rgba(251,191,36,0.25); }
+.badge-danger  { background: rgba(251,113,133,0.12); color: var(--danger);      border-color: rgba(251,113,133,0.25); }
+.badge-neutral { background: rgba(148,163,184,0.10); color: var(--text-2);      border-color: rgba(148,163,184,0.2); }
+
+/* ---------- 11. Progress ---------- */
+.meter { transition: box-shadow var(--dur); }
+.meter i {
+  transform-origin: left center;
+  animation: meterGrow 800ms var(--ease-out) both;
+}
+
+/* ---------- 12. Dropdowns, modals, toasts, tooltips ---------- */
+.dropdown-panel {
+  transform-origin: top right;
+  animation: dropIn var(--dur) var(--ease-out) both;
+  background: var(--surface-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-control);
+  box-shadow: 0 24px 60px -20px rgba(2,8,20,0.85);
+}
+.modal-backdrop {
+  position: fixed; inset: 0; z-index: 60;
+  background: rgba(4,13,25,0.6);
+  backdrop-filter: blur(6px);
+  animation: fadeIn var(--dur) ease both;
+}
+.modal-panel {
+  animation: modalIn var(--dur-slow) var(--ease-out) both;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+  box-shadow: 0 30px 80px -24px rgba(2,8,20,0.9);
+}
+.toast {
+  animation: toastIn var(--dur-slow) var(--ease-out) both;
+  background: var(--surface-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-control);
+  box-shadow: 0 16px 40px -16px rgba(2,8,20,0.85);
+}
+.toast.is-leaving { animation: toastOut 220ms ease-in both; }
+.tooltip {
+  animation: fadeIn var(--dur-fast) ease both;
+  background: var(--surface-elevated);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 6px 10px;
+  font-size: 12px;
+  color: var(--text-1);
+}
+
+/* ---------- 13. Skeleton ---------- */
+.skeleton {
+  border-radius: var(--radius-control);
+  background: linear-gradient(90deg,
+    rgba(30,52,77,0.35) 25%,
+    rgba(20,184,166,0.14) 50%,
+    rgba(30,52,77,0.35) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.6s linear infinite;
+}
+
+/* ---------- 14. Entrances ---------- */
+.page-enter { animation: pageIn var(--dur-slow) var(--ease-out) both; }
+
+.stagger > * { animation: fadeUp 380ms var(--ease-out) both; animation-delay: calc(var(--i, 0) * 60ms); }
+.stagger > :nth-child(1) { --i: 0; }
+.stagger > :nth-child(2) { --i: 1; }
+.stagger > :nth-child(3) { --i: 2; }
+.stagger > :nth-child(4) { --i: 3; }
+.stagger > :nth-child(5) { --i: 4; }
+.stagger > :nth-child(6) { --i: 5; }
+.stagger > :nth-child(7) { --i: 6; }
+.stagger > :nth-child(8) { --i: 7; }
+
+.js-reveal [data-reveal] {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 500ms var(--ease-out), transform 500ms var(--ease-out);
+}
+.js-reveal [data-reveal].is-visible { opacity: 1; transform: none; }
+
+.chart-line {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: draw 1.2s var(--ease-out) forwards;
+}
+
+/* ---------- 15. Keyframes ---------- */
+@keyframes fadeUp    { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+@keyframes fadeIn    { from { opacity: 0; } to { opacity: 1; } }
+@keyframes pageIn    { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+@keyframes dropIn    { from { opacity: 0; transform: scale(0.96) translateY(-4px); } to { opacity: 1; transform: none; } }
+@keyframes modalIn   { from { opacity: 0; transform: scale(0.97); } to { opacity: 1; transform: none; } }
+@keyframes toastIn   { from { opacity: 0; transform: translateX(16px); } to { opacity: 1; transform: none; } }
+@keyframes toastOut  { to { opacity: 0; transform: translateX(16px); } }
+@keyframes shimmer   { from { background-position: 200% 0; } to { background-position: -200% 0; } }
+@keyframes meterGrow { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@keyframes indicatorIn { from { opacity: 0; height: 0; } to { opacity: 1; height: 60%; } }
+@keyframes draw      { to { stroke-dashoffset: 0; } }
+@keyframes slideInRight { from { transform: translateX(100%); } to { transform: translateX(0); } }
+.animate-slide-in-right { animation: slideInRight var(--dur-slow) var(--ease-out) forwards; }
+
+/* ---------- 16. Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .js-reveal [data-reveal] { opacity: 1; transform: none; }
+  .app-bg__spot { display: none; }
+}
+
+/* ---------- 17. Touch targets ---------- */
+@media (max-width: 640px) {
+  .app-bg__blob { filter: blur(90px); }
+  button, a[role="button"] { min-height: 44px; }
+}
